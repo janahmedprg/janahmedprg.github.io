@@ -23,3 +23,9 @@
     line-height: 1.6;
     color: #666;
   }
+  
+  .profile-picture {
+    width: 200px; /* Adjust the width as needed */
+    border-radius: 50%; /* Make the image round */
+    margin-bottom: 20px; /* Add some space below the image */
+  }

@@ -3,10 +3,13 @@ import React from "react";
 import "../css/About.css";
 import { FaFilePdf } from "react-icons/fa";
 
+import janpic from "../janpic.jpg";
+
 const About = () => {
   return (
     <section className="about">
       <div className="about-content">
+        <img src={janpic} alt="Jan Ahmed" className="profile-picture" />
         <h2>About Me</h2>
         <p className="abt">
           I am a highly motivated student at University of Delaware double

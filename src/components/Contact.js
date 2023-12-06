@@ -16,7 +16,7 @@ const Contact = () => {
         <p className="cnt">
           Feel free to reach out! You can contact me via email at{" "}
           <a href="mailto:jan.ahmed.prg@gmail.com">
-            <FaEnvelope /> jan.ahmed.prg@email.com
+            <FaEnvelope /> jan.ahmed.prg@gmail.com
           </a>{" "}
           or connect with me on:
         </p>
