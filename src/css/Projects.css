@@ -21,6 +21,13 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  .proj {
+    max-width: 800px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: left;
+  }
   
   h3 {
     color: #007bff;
