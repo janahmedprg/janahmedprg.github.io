@@ -1,5 +1,5 @@
 // PlotPage.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Projects.css";
 
 const POL_API_KEY = process.env.REACT_APP_POL_API_KEY;
@@ -31,13 +31,17 @@ const BilliardsProj = () => {
     });
   };
 
+  const [loading, setLoading] = useState(true);
+
   const handleFetch = async () => {
+    setLoading(true);
     try {
       const queryParams = new URLSearchParams(parameters);
       const response = await fetch(
         `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
       );
 
+      console.log("Img fetched");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -46,11 +50,14 @@ const BilliardsProj = () => {
       const blob = await response.blob();
       const imageUrl = URL.createObjectURL(blob);
       setImgSrc(imageUrl);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-
+  useEffect(() => {
+    handleFetch();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <section className="projects">
       <div className="projects-content">
@@ -189,13 +196,21 @@ const BilliardsProj = () => {
               Run experiment
             </button>
           </div>
-          {imgSrc && (
+          <div>
+            {loading && <div className="spinner"></div>}
             <img
               src={imgSrc}
               alt="Plot"
-              style={{ width: "100%", height: "auto" }}
+              style={{
+                display: loading ? "none" : "block",
+                width: "100%", // Set the width to 100%
+                height: "auto", // Maintain the aspect ratio
+                border: "1px solid #ccc", // Add a border
+                borderRadius: "8px", // Add border-radius for rounded corners
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Add a subtle box shadow
+              }}
             />
-          )}
+          </div>
         </div>
       </div>
     </section>
