@@ -48,7 +48,7 @@
   }
 
   .form-container {
-    width: 600px;
+    width: 800px;
     margin: auto;
     text-align: left;
   }
@@ -62,13 +62,13 @@
   
   label {
     display: inline-block;
-    width: 500px;
+    width: 600px;
     margin: 5px;
     font-weight: bold;
   }
   
   input {
-    width: 100px;
+    width: 200px;
     padding: 8px;
     box-sizing: border-box;
     border: 1px solid #ccc;

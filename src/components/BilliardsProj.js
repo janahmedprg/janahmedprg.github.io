@@ -18,22 +18,22 @@ const BilliardsProj = () => {
   const [imgSrc, setImgSrc] = useState("");
 
   const handleChange = (e) => {
-    console.log(
-      `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&`
+    const { name, value, min, max } = e.target;
+    // Ensure the value is less than or equal to the specified max
+    const sanitizedValue = Math.min(
+      Math.max(parseFloat(value), parseFloat(min)),
+      parseFloat(max)
     );
-    const { name, value } = e.target;
-    setParameters((prevParams) => ({
-      ...prevParams,
-      [name]: value,
-    }));
+
+    setParameters({
+      ...parameters,
+      [name]: sanitizedValue,
+    });
   };
 
   const handleFetch = async () => {
     try {
       const queryParams = new URLSearchParams(parameters);
-      console.log(
-        `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
-      );
       const response = await fetch(
         `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
       );
@@ -50,8 +50,6 @@ const BilliardsProj = () => {
       console.error("Error fetching data:", error);
     }
   };
-
-  handleFetch();
 
   return (
     <section className="projects">
@@ -96,6 +94,8 @@ const BilliardsProj = () => {
               name="sides"
               value={parameters.sides}
               onChange={handleChange}
+              min={3}
+              max={20}
             />
           </div>
           <div className="form-group">
@@ -106,6 +106,8 @@ const BilliardsProj = () => {
               value={parameters.curve}
               onChange={handleChange}
               step="0.1"
+              min={-3.141592653589793 / 2}
+              max={3.141592653589793 / 2}
             />
           </div>
           <div className="form-group">
@@ -116,6 +118,8 @@ const BilliardsProj = () => {
               value={parameters.x}
               onChange={handleChange}
               step="0.1"
+              min={-1}
+              max={1}
             />
           </div>
           <div className="form-group">
@@ -126,6 +130,8 @@ const BilliardsProj = () => {
               value={parameters.y}
               onChange={handleChange}
               step="0.1"
+              min={-1}
+              max={1}
             />
           </div>
           <div className="form-group">
@@ -139,6 +145,8 @@ const BilliardsProj = () => {
               value={parameters.alpha}
               onChange={handleChange}
               step="0.1"
+              min={0}
+              max={2 * 3.141592653589793}
             />
           </div>
           <div className="form-group">
@@ -149,6 +157,8 @@ const BilliardsProj = () => {
               value={parameters.spin}
               onChange={handleChange}
               step="0.1"
+              min={0}
+              max={0.99}
             />
           </div>
           <div className="form-group">
@@ -159,15 +169,19 @@ const BilliardsProj = () => {
               value={parameters.eta}
               onChange={handleChange}
               step="0.1"
+              min={0}
+              max={1}
             />
           </div>
           <div className="form-group">
-            <label>Enter the number of collisions:</label>
+            <label>Enter the number of collisions (+1):</label>
             <input
               type="number"
               name="n"
               value={parameters.n}
               onChange={handleChange}
+              min={1}
+              max={500}
             />
           </div>
           <div className="center-button">
