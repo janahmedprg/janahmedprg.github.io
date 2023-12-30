@@ -13,61 +13,82 @@ function Experience() {
       <VerticalTimeline lineColor="#3e497a">
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
-          date="2010 - 2014"
+          date="2020 - 2024"
           iconStyle={{ background: "#3e497a", color: "#fff" }}
           icon={<SchoolIcon />}
         >
           <h3 className="vertical-timeline-element-title">
-            My Random High School, Random Place, Random State
-          </h3>
-          <p> High School Diploma</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          date="2014 - 2018"
-          iconStyle={{ background: "#3e497a", color: "#fff" }}
-          icon={<SchoolIcon />}
-        >
-          <h3 className="vertical-timeline-element-title">
-            My Cool University, Vancouver, British Columbia
-          </h3>
-
-          <h4 className="vertical-timeline-element-subtitle">
-            Bachelor's Degree
-          </h4>
-
-          <p> Computer Science</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--work"
-          date="2018 - 2020"
-          iconStyle={{ background: "#e9d35b", color: "#fff" }}
-          icon={<WorkIcon />}
-        >
-          <h3 className="vertical-timeline-element-title">
-            Back End Engineer - Google
+            Universtiy of Delaware
           </h3>
           <h4 className="vertical-timeline-element-subtitle">
-            San Francisco, CA
+            {" "}
+            Bachelor of Science
           </h4>
-          <p>Developed the backend infrastructure for 3 projects.</p>
+          <p> Double major in Applied Mathematics and Computer Science.</p>
         </VerticalTimelineElement>
 
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
-          date="2020 - present"
+          date="2021 - Present"
           iconStyle={{ background: "#e9d35b", color: "#fff" }}
           icon={<WorkIcon />}
         >
-          <h3 className="vertical-timeline-element-title">
-            Full Stack Engineer - Twitch
-          </h3>
+          <h3 className="vertical-timeline-element-title">Mathematics Tutor</h3>
           <h4 className="vertical-timeline-element-subtitle">
-            San Francisco, CA
+            Universtiy of Delaware
           </h4>
           <p>
-            Helped the team launch 2 major features by working both in the front
-            end and back end.
+            Provided academic support to students enrolled in Calculus, Linear
+            Algebra, Discrete Math and Probability classes.
+          </p>
+        </VerticalTimelineElement>
+
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="2022 - 2023"
+          iconStyle={{ background: "#e9d35b", color: "#fff" }}
+          icon={<WorkIcon />}
+        >
+          <h3 className="vertical-timeline-element-title">Lab Assistant</h3>
+          <h4 className="vertical-timeline-element-subtitle">
+            University of Delaware
+          </h4>
+          <p>
+            Demonstrated leadership and teaching skills by guiding and assisting
+            10-20 students weekly during computer science lab sessions.
+          </p>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="2022 - 2023"
+          iconStyle={{ background: "#e9d35b", color: "#fff" }}
+          icon={<WorkIcon />}
+        >
+          <h3 className="vertical-timeline-element-title">
+            Homework and Exams Grader
+          </h3>
+          <h4 className="vertical-timeline-element-subtitle">
+            University of Delaware
+          </h4>
+          <p>
+            Graded homework and exams for both Linear Algebra and Introduction
+            to Proof courses.
+          </p>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="2022 - 2023"
+          iconStyle={{ background: "#e9d35b", color: "#fff" }}
+          icon={<WorkIcon />}
+        >
+          <h3 className="vertical-timeline-element-title">
+            Software Dev Engineer I
+          </h3>
+          <h4 className="vertical-timeline-element-subtitle">Amazon</h4>
+          <p>
+            Added a job metric tracker to the AWS Glue dashboard, improving data
+            monitoring capabilities of AWS Glue. Designed and implemented a tool
+            utilizing Spark in Scala to monitor data freshness.
           </p>
         </VerticalTimelineElement>
       </VerticalTimeline>

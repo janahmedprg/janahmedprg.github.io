@@ -24,7 +24,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="Jan-Ahmed/#" smooth="true" duration={500}>
+            <Link to="/" smooth="true" duration={500}>
               Contact
             </Link>
           </li>
