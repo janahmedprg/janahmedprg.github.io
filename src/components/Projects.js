@@ -53,7 +53,6 @@ const Projects = () => {
             </li>
           </ul>
         </div>
-        {/* Add more project sections as needed */}
       </div>
     </section>
   );
