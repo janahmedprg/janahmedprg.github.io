@@ -29,3 +29,35 @@
     border-radius: 50%; /* Make the image round */
     margin-bottom: 20px; /* Add some space below the image */
   }
+
+  .collapsible-container {
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    max-width: 800px; /* Adjust the max-width as needed */
+    cursor: pointer;
+    background-color: #d1f5ff;
+  }
+  .collapsible-container:hover {
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+    background-color: #adedff;
+    border: #adedff;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+  }
+  
+  .collapsible-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .collapsible-content {
+    display: block;
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+  }
