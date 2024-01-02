@@ -98,6 +98,13 @@ nav a:hover {
   cursor: pointer;
   background-color: #d1f5ff;
 }
+.collapsible-container:hover {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+  background-color: #adedff;
+  border: #adedff;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
 
 .collapsible-header {
   font-weight: bold;

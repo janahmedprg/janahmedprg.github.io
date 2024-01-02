@@ -6,7 +6,7 @@ import { FaFilePdf } from "react-icons/fa";
 import janpic from "../janpic.jpg";
 
 const About = () => {
-  const [isOpen1, setIsOpen1] = useState(true);
+  const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
 
   const handleToggle1 = () => {
@@ -21,6 +21,9 @@ const About = () => {
       <div className="about-content">
         <img src={janpic} alt="Jan Ahmed" className="profile-picture" />
         <h2>About Me</h2>
+        <p>
+          <b>Main research interests:</b> Markov Chains, Brownian Motion.
+        </p>
         <div
           className={`collapsible-container ${isOpen1 ? "open" : "closed"}`}
           onClick={handleToggle1}
