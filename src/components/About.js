@@ -214,7 +214,7 @@ const About = () => {
           .
         </p>
         <p>
-          Fun fact about me: My Erdős number is 5 (J. Ahmed-{">"}C. Cox-
+          Fun fact about me: My Erdős number is at most 5 (J. Ahmed-{">"}C. Cox-
           {">"}M. Hutchings-{">"}F. Morgan-{">"}Z. Füredi-{">"}P. Erdős).
         </p>
       </div>
