@@ -188,8 +188,8 @@ const About = () => {
           .
         </p>
         <p>
-          Fun fact about me: My Erdős number is 5 (Jan-Cox-{">"}Hutchings-{">"}
-          Morgan-{">"}Füredi-{">"}Erdős).
+          Fun fact about me: My Erdős number is 5 (J. Ahmed-{">"}C. Cox-
+          {">"}M. Hutchings-{">"}F. Morgan-{">"}Z. Füredi-{">"}P. Erdős).
         </p>
       </div>
     </section>
