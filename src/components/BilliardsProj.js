@@ -17,6 +17,12 @@ const BilliardsProj = () => {
   });
   const [imgSrc, setImgSrc] = useState("");
 
+  const [selectedOption, setSelectedOption] = useState("polygon");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   const handleChange = (e) => {
     const { name, value, min, max } = e.target;
     // Ensure the value is less than or equal to the specified max
@@ -35,6 +41,11 @@ const BilliardsProj = () => {
 
   const handleFetch = async () => {
     setLoading(true);
+    if (selectedOption === "strip") {
+      parameters.sides = 1;
+    } else if (selectedOption === "wedge") {
+      parameters.sides = 2;
+    }
     try {
       const queryParams = new URLSearchParams(parameters);
       const response = await fetch(
@@ -92,6 +103,40 @@ const BilliardsProj = () => {
           see the traces of the trajectories of the no-slip billiard system.
         </p>
         <div className="form-container">
+          <label className="instruction-label">
+            Select the following shape of the billiard table:
+          </label>
+          <div className="radio-buttons-container">
+            <label className="radio-button-label">
+              Polygon
+              <input
+                type="radio"
+                value="polygon"
+                checked={selectedOption === "polygon"}
+                onChange={handleOptionChange}
+              />
+            </label>
+
+            <label className="radio-button-label">
+              Strip
+              <input
+                type="radio"
+                value="strip"
+                checked={selectedOption === "strip"}
+                onChange={handleOptionChange}
+              />
+            </label>
+
+            <label className="radio-button-label">
+              Wedge
+              <input
+                type="radio"
+                value="wedge"
+                checked={selectedOption === "wedge"}
+                onChange={handleOptionChange}
+              />
+            </label>
+          </div>
           <div className="form-group">
             <label>
               Enter the number of sides of the polygon billiard table:

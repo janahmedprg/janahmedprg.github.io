@@ -1,116 +1,134 @@
 .projects {
-    padding: 20px;
-    background-color:#f5f5f5;
-  }
-  
-  .projects-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  h2 {
-    color: #333;
-  }
-  
-  .project {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .project:hover {
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
-    background-color: #d1f5ff;
-    border: #d1f5ff;
-    transition: 0.3s ease-in;
-    cursor: pointer;
-  }
+  padding: 20px;
+  background-color:#f5f5f5;
+}
 
-  .proj {
-    max-width: 800px;
-    margin-left: 50px;
-    margin-right: 50px;
-    text-align: left;
-  }
-  
-  h3 {
-    color: #007bff;
-  }
-  
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-    text-align: left;
-  }
+.projects-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-  .form-container {
-    background-color: #d1f5ff;
-    max-width: 800px;
-    margin: auto;
-    text-align: left;
-    padding: 50px;
-  }
+h2 {
+  color: #333;
+}
 
-  .form-group {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-bottom: 15px;
-    background-color: lightgray;
-  }
-  
-  label {
-    display: inline-block;
-    max-width: 600px;
-    width: 100%;
-    margin: 5px;
-    font-weight: bold;
-  }
-  
-  input {
-    max-width: 200px;
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
+.project {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.project:hover {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+  background-color: #d1f5ff;
+  border: #d1f5ff;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
 
-  .submit-button {
-    background-color: #4caf50; /* Green */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .submit-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
-  .center-button{
-    text-align: right;
-    margin-bottom: 20px;
-  }
+.proj {
+  max-width: 800px;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: left;
+}
 
-  .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #3498db;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+h3 {
+  color: #007bff;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  text-align: left;
+}
+
+.form-container {
+  background-color: #d1f5ff;
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+  padding: 50px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: lightgray;
+}
+
+label {
+  display: inline-block;
+  max-width: 600px;
+  width: 100%;
+  margin: 5px;
+  font-weight: bold;
+}
+
+input {
+  max-width: 200px;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.submit-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.center-button{
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radio-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.radio-button-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px; /* Adjust the margin as needed */
+}
+
+input[type="radio"] {
+  margin-top: 5px; /* Adjust the margin as needed */
+  transform: scale(1.2); /* Adjust the scale factor as needed */
+}  
