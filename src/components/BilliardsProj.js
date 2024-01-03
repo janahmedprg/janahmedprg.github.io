@@ -6,7 +6,7 @@ const POL_API_KEY = process.env.REACT_APP_POL_API_KEY;
 
 const BilliardsProj = () => {
   const [parameters, setParameters] = useState({
-    n: 1,
+    n: 2,
     x: 0,
     y: 0,
     curve: 0,
@@ -16,39 +16,117 @@ const BilliardsProj = () => {
     spin: 0,
   });
   const [imgSrc, setImgSrc] = useState("");
-
+  const [flag, setFlag] = useState([]);
   const [selectedOption, setSelectedOption] = useState("polygon");
+  const [loading, setLoading] = useState(true);
 
   const handleOptionChange = (event) => {
+    if (event.target.value === "wedge") {
+      setParameters({
+        n: 2,
+        x: 0,
+        y: 0.15,
+        curve: 0.1,
+        eta: 0.1,
+        sides: 2,
+        alpha: 0,
+        spin: 0,
+      });
+    } else if (event.target.value === "strip") {
+      setParameters({
+        n: 2,
+        x: 0,
+        y: 0.1,
+        curve: 0,
+        eta: 0.1,
+        sides: 1,
+        alpha: Math.PI / 4,
+        spin: 0,
+      });
+    } else if (event.target.value === "polygon") {
+      setParameters({
+        n: 2,
+        x: 0,
+        y: 0,
+        curve: 0,
+        eta: 0,
+        sides: 3,
+        alpha: 0.1,
+        spin: 0,
+      });
+    }
     setSelectedOption(event.target.value);
+    setFlag([]);
   };
 
   const handleChange = (e) => {
-    const { name, value, min, max } = e.target;
-    // Ensure the value is less than or equal to the specified max
-    const sanitizedValue = Math.min(
-      Math.max(parseFloat(value), parseFloat(min)),
-      parseFloat(max)
-    );
+    const { name, value } = e.target;
+    const flags = [];
+    const newParam = { ...parameters, [name]: parseFloat(value) };
 
+    if (selectedOption === "polygon") {
+      if (newParam.sides > 16 || newParam.sides < 3) {
+        flags.push("number of sides");
+      }
+      if (newParam.curve < -Math.PI / 2 || newParam.curve > Math.PI / 2) {
+        flags.push("curvature");
+      }
+      if (newParam.x > 1 || newParam.x < -1) {
+        flags.push("x coordinate");
+      }
+      if (newParam.y > 1 || newParam.y < -1) {
+        flags.push("y coordinate");
+      }
+    }
+    if (selectedOption === "strip") {
+      if (newParam.x > 1 || newParam.x < -1) {
+        flags.push("x coordinate");
+      }
+      if (newParam.y > 1 || newParam.y < 0) {
+        flags.push("y coordinate");
+      }
+    }
+    if (selectedOption === "wedge") {
+      if (newParam.curve < 0 || newParam.curve > Math.PI) {
+        flags.push("angle of the wedge");
+      }
+      if (newParam.x > 1 || newParam.x < 0) {
+        flags.push("x coordinate");
+      }
+      if (newParam.y > 4 || newParam.y < 0) {
+        flags.push("y coordinate");
+      }
+    }
+
+    if (newParam.alpha > 2 * Math.PI || newParam.alpha < 0) {
+      flags.push("initial angle");
+    }
+    if (newParam.spin > 1 || newParam.spin < 0) {
+      flags.push("rotational velocity");
+    }
+    if (newParam.eta < 0 || newParam.eta > 1) {
+      flags.push("mass distribution");
+    }
+    if (newParam.n > 1000 || newParam.n < 1) {
+      flags.push("number of collisions");
+    }
+    setFlag(flags);
+    // Ensure the value is less than or equal to the specified max
     setParameters({
       ...parameters,
-      [name]: sanitizedValue,
+      [name]: parseFloat(value),
     });
   };
 
-  const [loading, setLoading] = useState(true);
-
   const handleFetch = async () => {
-    setLoading(true);
-    if (selectedOption === "strip") {
-      parameters.sides = 1;
-    } else if (selectedOption === "wedge") {
-      parameters.sides = 2;
+    if (flag.length > 0) {
+      return;
     }
+    setLoading(true);
     try {
       const queryParams = new URLSearchParams(parameters);
       const response = await fetch(
+        // `https://billiards?key=${POL_API_KEY}&${queryParams}`
         `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
       );
 
@@ -68,7 +146,8 @@ const BilliardsProj = () => {
   };
   useEffect(() => {
     handleFetch();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedOption]);
   return (
     <section className="projects">
       <div className="projects-content">
@@ -82,9 +161,10 @@ const BilliardsProj = () => {
           periodic. We also prove a similar result for an infinite wedge
           billiard. We also provided numerical evidence suggesting that the
           ellipse no-slip billiard is possibly integrable but with a more
-          complex structure. Using an algorithm, we found potential mass
-          distributions for a particle such that it satisfies a sufficient
-          condition of having all orbits periodic in a regular polygon billiard.
+          complex structure. Using an algorithm that I implemented, we found
+          potential mass distributions for a particle such that it satisfies a
+          sufficient condition of having all orbits periodic in a regular
+          polygon billiard.
         </p>
         <p>
           Detailed information about this research project can be found on our{" "}
@@ -137,31 +217,43 @@ const BilliardsProj = () => {
               />
             </label>
           </div>
-          <div className="form-group">
-            <label>
-              Enter the number of sides of the polygon billiard table:
-            </label>
-            <input
-              type="number"
-              name="sides"
-              value={parameters.sides}
-              onChange={handleChange}
-              min={3}
-              max={20}
-            />
-          </div>
-          <div className="form-group">
-            <label>Enter the curvature of the sides (in radians):</label>
-            <input
-              type="number"
-              name="curve"
-              value={parameters.curve}
-              onChange={handleChange}
-              step="0.1"
-              min={-3.141592653589793 / 2}
-              max={3.141592653589793 / 2}
-            />
-          </div>
+          {selectedOption === "polygon" && (
+            <div className="form-group">
+              <label>
+                Enter the number of sides of the polygon billiard table:
+              </label>
+              <input
+                type="number"
+                name="sides"
+                value={parameters.sides}
+                onChange={handleChange}
+              />
+            </div>
+          )}
+          {selectedOption === "polygon" && (
+            <div className="form-group">
+              <label>Enter the curvature of the sides (in radians):</label>
+              <input
+                type="number"
+                name="curve"
+                value={parameters.curve}
+                onChange={handleChange}
+                step="0.1"
+              />
+            </div>
+          )}
+          {selectedOption === "wedge" && (
+            <div className="form-group">
+              <label>Enter the angle of the wedge:</label>
+              <input
+                type="number"
+                name="curve"
+                value={parameters.curve}
+                onChange={handleChange}
+                step="0.1"
+              />
+            </div>
+          )}
           <div className="form-group">
             <label>Enter the starting x coordinate:</label>
             <input
@@ -170,8 +262,6 @@ const BilliardsProj = () => {
               value={parameters.x}
               onChange={handleChange}
               step="0.1"
-              min={-1}
-              max={1}
             />
           </div>
           <div className="form-group">
@@ -182,8 +272,6 @@ const BilliardsProj = () => {
               value={parameters.y}
               onChange={handleChange}
               step="0.1"
-              min={-1}
-              max={1}
             />
           </div>
           <div className="form-group">
@@ -197,8 +285,6 @@ const BilliardsProj = () => {
               value={parameters.alpha}
               onChange={handleChange}
               step="0.1"
-              min={0}
-              max={2 * 3.141592653589793}
             />
           </div>
           <div className="form-group">
@@ -209,8 +295,6 @@ const BilliardsProj = () => {
               value={parameters.spin}
               onChange={handleChange}
               step="0.1"
-              min={0}
-              max={0.99}
             />
           </div>
           <div className="form-group">
@@ -221,8 +305,6 @@ const BilliardsProj = () => {
               value={parameters.eta}
               onChange={handleChange}
               step="0.1"
-              min={0}
-              max={1}
             />
           </div>
           <div className="form-group">
@@ -232,15 +314,28 @@ const BilliardsProj = () => {
               name="n"
               value={parameters.n}
               onChange={handleChange}
-              min={1}
-              max={500}
             />
           </div>
           <div className="center-button">
-            <button className="submit-button" onClick={handleFetch}>
+            <button
+              className={flag.length > 0 ? "disabled-button" : "submit-button"}
+              onClick={handleFetch}
+              disabled={flag.length > 0}
+            >
               Run experiment
             </button>
           </div>
+          {flag.length > 0 && (
+            <div>
+              <p className="warning">
+                <b>
+                  Incorrect input for the parameter
+                  {flag.length === 1 ? "" : "s"}:
+                </b>{" "}
+                {flag.join(", ")}
+              </p>
+            </div>
+          )}
           <div>
             {loading && <div className="spinner"></div>}
             <img

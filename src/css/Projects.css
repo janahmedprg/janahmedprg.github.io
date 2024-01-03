@@ -23,8 +23,8 @@ h2 {
 }
 .project:hover {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
-  background-color: #d1f5ff;
-  border: #d1f5ff;
+  background-color: lightgray;
+  border: lightgray;
   transition: 0.3s ease-in;
   cursor: pointer;
 }
@@ -48,7 +48,7 @@ p {
 }
 
 .form-container {
-  background-color: #d1f5ff;
+  background-color: darkgray;
   max-width: 800px;
   margin: auto;
   text-align: left;
@@ -131,4 +131,21 @@ input {
 input[type="radio"] {
   margin-top: 5px; /* Adjust the margin as needed */
   transform: scale(1.2); /* Adjust the scale factor as needed */
-}  
+}
+
+.warning {
+  background-color: #ffe4e1; /* Light red background color, adjust as needed */
+  border: 1px solid #ff6666; /* Red border, adjust as needed */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.disabled-button {
+  background-color: gray; /* Green */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}

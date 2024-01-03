@@ -178,14 +178,14 @@ const About = () => {
                 communicate effectively with professors and my peers.
               </p>
               <p>
-                As co-founder and co-president of the Competitive Programming
-                Club at the University of Delaware, I cultivated a dynamic
-                community for students to enhance problem-solving skills through
-                algorithmic problems. Organizing workshops and competitions, I
-                fostered an inclusive environment that welcomed diverse skill
-                levels and backgrounds. This experience deepened my appreciation
-                for collaborative learning and my honed leadership skills while
-                creating a lasting legacy.
+                As a co-founder and a co-president of the Competitive
+                Programming Club at the University of Delaware, I cultivated a
+                dynamic community for students to enhance problem-solving skills
+                through algorithmic problems. Organizing workshops and
+                competitions, I fostered an inclusive environment that welcomed
+                diverse skill levels and backgrounds. This experience deepened
+                my appreciation for collaborative learning and my honed
+                leadership skills while creating a lasting legacy.
               </p>
               <p>
                 I am enthusiastic about applying these experiences to contribute
