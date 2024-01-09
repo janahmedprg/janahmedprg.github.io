@@ -208,17 +208,17 @@ const BilliardsProj = () => {
         <div className="gif-row">
           <img
             className="gif"
-            src="https://drive.google.com/uc?id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
+            src="https://drive.google.com/file/d/1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2/preview"
             alt="GIF 1"
           />
           <img
             className="gif"
-            src="https://drive.google.com/uc?id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
+            src="https://drive.google.com/file/d/1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC/preview"
             alt="GIF 2"
           />
           <img
             className="gif"
-            src="https://drive.google.com/uc?id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
+            src="https://drive.google.com/file/d/17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p/preview"
             alt="GIF 3"
           />
         </div>
