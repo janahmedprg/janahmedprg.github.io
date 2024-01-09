@@ -149,3 +149,37 @@ input[type="radio"] {
   cursor: pointer;
   font-size: 16px;
 }
+
+.thm-container{
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  font-size: 1.05em;
+  color: #333;
+}
+
+.katex { font-size: 1.05em !important;color: #333 !important; }
+
+.custom-list {
+  list-style-type: none;
+}
+
+.custom-list li {
+  counter-increment: section;
+  margin-bottom: 5px;
+}
+
+.custom-list li::before {
+  content: "(" counter(section) ")";
+  margin-right: 0.5em; /* Add some spacing between the counter and content */
+}
+
+.gif-row {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+}
+
+.gif {
+  max-width: 266.66666px; /* Adjust the width as needed */
+  height: auto;
+}

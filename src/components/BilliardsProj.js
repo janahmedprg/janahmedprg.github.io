@@ -1,6 +1,8 @@
 // PlotPage.js
 import React, { useState, useEffect } from "react";
 import "../css/Projects.css";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 const POL_API_KEY = process.env.REACT_APP_POL_API_KEY;
 
@@ -153,18 +155,77 @@ const BilliardsProj = () => {
       <div className="projects-content">
         <h2>No-Slip Billiards</h2>
         <p>
-          We provided results on a type of mathematical billiards called no-slip
+          In our{" "}
+          <a
+            href="https://pubs.aip.org/aip/cha/article-abstract/32/2/023102/2835590/No-slip-billiards-with-particles-of-variable-mass"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            published paper
+          </a>{" "}
+          we provided results on a type of mathematical billiards called no-slip
           billiards, that have the properties of having perfectly rough
           boundaries and at collision there is no loss of energy. Our main
-          result shows that for an infinite strip billiard there is a mass
-          distribution of a particle such that all non-escaping orbits are
-          periodic. We also prove a similar result for an infinite wedge
-          billiard. We also provided numerical evidence suggesting that the
-          ellipse no-slip billiard is possibly integrable but with a more
-          complex structure. Using an algorithm that I implemented, we found
-          potential mass distributions for a particle such that it satisfies a
-          sufficient condition of having all orbits periodic in a regular
-          polygon billiard.
+          result is the following Theorem where the mass distribution constant
+          ranges from <InlineMath>\eta = 0</InlineMath> which is the specular
+          billiards case, to <InlineMath>\eta = 1</InlineMath> which is the
+          infinite inertia limit case.
+        </p>
+        <div className="thm-container">
+          <strong>Theorem 1:</strong> Values for the particle mass distribution
+          constant <InlineMath>0\leq \eta \leq 1</InlineMath> yielding
+          persistently periodic billiards are dense. In particular, for any
+          integer <InlineMath math="n>1" />,
+          <ol className="custom-list">
+            <li>
+              there exists an <InlineMath>\eta</InlineMath> so that all points
+              in phase space of the infinite strip are{" "}
+              <InlineMath>2n</InlineMath>-periodic, and
+            </li>
+            <li>
+              for any angle <InlineMath math="0<\phi\leq \frac{\pi}{8}" />,
+              there is a mass distribution constant{" "}
+              <InlineMath>\eta</InlineMath> which makes the wedge of angle{" "}
+              <InlineMath>2\phi</InlineMath> persistently periodic of period{" "}
+              <InlineMath>2n</InlineMath>.
+            </li>
+          </ol>
+        </div>
+        <p>
+          We provide numerical evidence suggesting that the ellipse no-slip
+          billiard <InlineMath>E(e,\eta)</InlineMath>, where{" "}
+          <InlineMath>e</InlineMath> is the eccentricity and{" "}
+          <InlineMath>\eta</InlineMath> is the mass distribution constant, is
+          possibly integrable but with a more complex structure. So far there
+          are two known subfalimies <InlineMath>E(0,\eta)</InlineMath> and{" "}
+          <InlineMath>E(e,0)</InlineMath> that are integrable. As an example of
+          our numerical evidence, we restrict to the subfamily{" "}
+          <InlineMath>E(0.5,\eta)</InlineMath> and look at how the phase space
+          evolves as we vary <InlineMath>\eta</InlineMath> starting from close
+          to <InlineMath>\eta=0</InlineMath> to <InlineMath>\eta =1</InlineMath>
+          . A view of the progression of the dynamics is given by Figure 1.
+        </p>
+        <div className="gif-row">
+          <img
+            className="gif"
+            src="https://drive.google.com/uc?id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
+            alt="GIF 1"
+          />
+          <img
+            className="gif"
+            src="https://drive.google.com/uc?id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
+            alt="GIF 2"
+          />
+          <img
+            className="gif"
+            src="https://drive.google.com/uc?id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
+            alt="GIF 3"
+          />
+        </div>
+        <p>
+          Using an algorithm that I implemented, we found potential mass
+          distributions for a particle such that it satisfies a sufficient
+          condition of having all orbits periodic in a regular polygon billiard.
         </p>
         <p>
           Detailed information about this research project can be found on our{" "}
