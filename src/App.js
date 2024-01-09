@@ -1,6 +1,6 @@
 // App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as HashRouter, Route } from "react-router-dom";
 import Header from "./components/Header";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -11,16 +11,14 @@ import Experience from "./components/Experience";
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <Header />
-      <Routes>
-        <Route path="Jan-Ahmed/" element={<About />} />
-        <Route path="Jan-Ahmed/project" element={<Projects />} />
-        <Route path="Jan-Ahmed/project/billiards" element={<BilliardsProj />} />
-        <Route path="Jan-Ahmed/experience" element={<Experience />} />
-      </Routes>
+      <Route path="Jan-Ahmed/" element={<About />} />
+      <Route path="Jan-Ahmed/project" element={<Projects />} />
+      <Route path="Jan-Ahmed/project/billiards" element={<BilliardsProj />} />
+      <Route path="Jan-Ahmed/experience" element={<Experience />} />
       <Contact />
-    </Router>
+    </HashRouter>
   );
 }
 
