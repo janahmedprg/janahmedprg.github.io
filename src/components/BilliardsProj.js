@@ -206,21 +206,30 @@ const BilliardsProj = () => {
           . A view of the progression of the dynamics is given by Figure 1.
         </p>
         <div className="gif-row">
-          <img
-            className="gif"
-            src="https://drive.google.com/file/d/1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2/preview"
-            alt="GIF 1"
-          />
-          <img
-            className="gif"
-            src="https://drive.google.com/file/d/1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC/preview"
-            alt="GIF 2"
-          />
-          <img
-            className="gif"
-            src="https://drive.google.com/file/d/17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p/preview"
-            alt="GIF 3"
-          />
+          <a href="https://drive.google.com/file/d/1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2/view">
+            <img
+              className="gif"
+              src="https://drive.google.com/uc?export=view&id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
+              title="Click for the larger version."
+              alt="GIF 1"
+            />
+          </a>
+          <a href="https://drive.google.com/file/d/1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC/view">
+            <img
+              className="gif"
+              src="https://drive.google.com/uc?export=view&id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
+              title="Click for the larger version."
+              alt="GIF 2"
+            />
+          </a>
+          <a href="https://drive.google.com/file/d/17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p/view">
+            <img
+              className="gif"
+              src="https://drive.google.com/uc?export=view&id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
+              title="Click for the larger version."
+              alt="GIF 3"
+            />
+          </a>
         </div>
         <p>
           Using an algorithm that I implemented, we found potential mass
