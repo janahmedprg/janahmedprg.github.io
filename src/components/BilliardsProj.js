@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../css/Projects.css";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import QuestionMark from "../utils/QuestionMark";
 
 const POL_API_KEY = process.env.REACT_APP_POL_API_KEY;
 
@@ -90,7 +91,7 @@ const BilliardsProj = () => {
     }
     if (selectedOption === "wedge") {
       if (newParam.curve < 0 || newParam.curve > Math.PI) {
-        flags.push("angle of the wedge");
+        flags.push("wedge angle");
       }
       if (newParam.x > 1 || newParam.x < 0) {
         flags.push("x coordinate");
@@ -103,7 +104,7 @@ const BilliardsProj = () => {
     if (newParam.alpha > 2 * Math.PI || newParam.alpha < 0) {
       flags.push("initial angle");
     }
-    if (newParam.spin > 1 || newParam.spin < 0) {
+    if (newParam.spin > 1 || newParam.spin < -1) {
       flags.push("rotational velocity");
     }
     if (newParam.eta < 0 || newParam.eta > 1) {
@@ -128,7 +129,6 @@ const BilliardsProj = () => {
     try {
       const queryParams = new URLSearchParams(parameters);
       const response = await fetch(
-        // `https://billiards?key=${POL_API_KEY}&${queryParams}`
         `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
       );
 
@@ -146,6 +146,25 @@ const BilliardsProj = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const tableData = [
+    {
+      shape: "Triangle",
+      eta: [
+        "\\frac{1}{\\pi}\\arccos\\left(\\frac{1}{3}\\right) \\approx 0.3918",
+        "1-\\frac{1}{\\pi}\\arccos\\left(\\frac{1}{3}\\right) \\approx 0.6082",
+      ],
+      possiblePeriods: ["4, 6", "6, 12"],
+    },
+    { shape: "Square", eta: ["0.5"], possiblePeriods: ["4, 6, 8, 10, 12"] },
+    {
+      shape: "Pentagon",
+      eta: [
+        "\\frac{2}{\\pi}\\arccos\\left(\\frac{\\sqrt{1+\\cos\\left(\\frac{2\\pi}{3}\\right)}}{\\sqrt{2}\\cos\\left(\\frac{3\\pi}{10}\\right)}\\right) \\approx 0.35",
+        "1-\\frac{2}{\\pi}\\arccos\\left(\\frac{\\sqrt{1+\\cos\\left(\\frac{2\\pi}{3}\\right)}}{\\sqrt{2}\\cos\\left(\\frac{3\\pi}{10}\\right)}\\right) \\approx 0.65",
+      ],
+      possiblePeriods: ["6, 8, 10, 14, 20, 30, 40", "6, 10, 20, 30, 40"],
+    },
+  ];
   useEffect(() => {
     handleFetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -203,7 +222,8 @@ const BilliardsProj = () => {
           <InlineMath>E(0.5,\eta)</InlineMath> and look at how the phase space
           evolves as we vary <InlineMath>\eta</InlineMath> starting from close
           to <InlineMath>\eta=0</InlineMath> to <InlineMath>\eta =1</InlineMath>
-          . A view of the progression of the dynamics is given by Figure 1.
+          . A view of the progression of the dynamics is given by the phase
+          spaces in Figure 1.
         </p>
         <div className="gif-row">
           <a
@@ -243,10 +263,79 @@ const BilliardsProj = () => {
             />
           </a>
         </div>
+        <p
+          style={{
+            textAlign: "center",
+            fontStyle: "italic",
+            paddingLeft: "50px",
+            paddingRight: "50px",
+            marginTop: "0px",
+            fontSize: "85%",
+          }}
+        >
+          Figure 1: Left is the phase space of{" "}
+          <InlineMath>E(0.5,0.0635)</InlineMath> with almost specular
+          collisions; center is the phase space of{" "}
+          <InlineMath>E(0.5,0.3918)</InlineMath> with uniform distribution;
+          right is the phase space of <InlineMath>E(0.5,0.7952)</InlineMath>{" "}
+          with almost infinite inertia.
+        </p>
         <p>
           Using an algorithm that I implemented, we found potential mass
           distributions for a particle such that it satisfies a sufficient
-          condition of having all orbits periodic in a regular polygon billiard.
+          condition of having all orbits periodic in a regular polygon no-slip
+          billiard. The potential candidates for the mass distribution and their
+          possible peiriods are listed in the follwing table.
+        </p>
+        <table className="my-table">
+          <thead>
+            <tr>
+              <th style={{ color: "#333" }}>Shape</th>
+              <th style={{ color: "#333" }}>
+                Mass distribution{" "}
+                <InlineMath math="\large\boldsymbol{\eta}"></InlineMath>
+              </th>
+              <th style={{ color: "#333" }}>Possible Periods</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <React.Fragment key={index}>
+                <tr>
+                  <td rowSpan={row.eta.length} style={{ color: "#333" }}>
+                    {row.shape}
+                  </td>
+                  <td>
+                    <InlineMath math={row.eta[0]} />
+                  </td>
+                  <td style={{ color: "#333" }}>{row.possiblePeriods[0]}</td>
+                </tr>
+                {row.eta.slice(1).map((eta, etaIndex) => (
+                  <tr key={etaIndex}>
+                    <td>
+                      <InlineMath math={eta} />
+                    </td>
+                    <td style={{ color: "#333" }}>
+                      {row.possiblePeriods[etaIndex + 1]}
+                    </td>
+                  </tr>
+                ))}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+        <p
+          style={{
+            textAlign: "center",
+            fontStyle: "italic",
+            paddingLeft: "50px",
+            paddingRight: "50px",
+            marginTop: "0px",
+            fontSize: "85%",
+          }}
+        >
+          Table 1: Potential candidates for the mass distribution in a regular
+          polygon no-slip billiard.
         </p>
         <p>
           Detailed information about this research project can be found on our{" "}
@@ -262,7 +351,9 @@ const BilliardsProj = () => {
         <h3>Try it yourself</h3>
         <p>
           Enter the following intitial conditions and press "Run experiment" to
-          see the traces of the trajectories of the no-slip billiard system.
+          see the traces of the trajectories of the no-slip billiard system. You
+          can test out Theorem 1, and the potential candidates for the mass
+          distribution in the regular polygon billiard listed in Table 1.
         </p>
         <div className="form-container">
           <label className="instruction-label">
@@ -302,7 +393,8 @@ const BilliardsProj = () => {
           {selectedOption === "polygon" && (
             <div className="form-group">
               <label>
-                Enter the number of sides of the polygon billiard table:
+                number of sides{" "}
+                <QuestionMark tooltipText="Enter the number of sides of the polygon billiard table (range is 3-16)." />
               </label>
               <input
                 type="number"
@@ -314,7 +406,10 @@ const BilliardsProj = () => {
           )}
           {selectedOption === "polygon" && (
             <div className="form-group">
-              <label>Enter the curvature of the sides (in radians):</label>
+              <label>
+                curvature
+                <QuestionMark tooltipText="Enter the curvature of the sides in radians (range is -π/2-π/2)." />
+              </label>
               <input
                 type="number"
                 name="curve"
@@ -326,7 +421,10 @@ const BilliardsProj = () => {
           )}
           {selectedOption === "wedge" && (
             <div className="form-group">
-              <label>Enter the angle of the wedge:</label>
+              <label>
+                wedge angle
+                <QuestionMark tooltipText="Enter the angle of the wedge in radians (range is 0-π)." />
+              </label>
               <input
                 type="number"
                 name="curve"
@@ -337,7 +435,10 @@ const BilliardsProj = () => {
             </div>
           )}
           <div className="form-group">
-            <label>Enter the starting x coordinate:</label>
+            <label>
+              x coordinate
+              <QuestionMark tooltipText="Enter the starting x coordinate so the point is inside the billiard table." />
+            </label>
             <input
               type="number"
               name="x"
@@ -347,7 +448,10 @@ const BilliardsProj = () => {
             />
           </div>
           <div className="form-group">
-            <label>Enter the starting y coordinate:</label>
+            <label>
+              y coordinate
+              <QuestionMark tooltipText="Enter the starting y coordinate so the point is inside the billiard table." />
+            </label>
             <input
               type="number"
               name="y"
@@ -358,8 +462,11 @@ const BilliardsProj = () => {
           </div>
           <div className="form-group">
             <label>
-              Enter the initial angle (relative to the horizontal line in
-              radians):
+              initial angle
+              <QuestionMark
+                tooltipText="Enter the initial angle relative to the horizontal line in
+              radians (range 0-2π)."
+              />
             </label>
             <input
               type="number"
@@ -370,7 +477,10 @@ const BilliardsProj = () => {
             />
           </div>
           <div className="form-group">
-            <label>Enter the initial rotational velocity:</label>
+            <label>
+              rotational velocity
+              <QuestionMark tooltipText="Enter the initial rotational velocity (range -1-1)." />
+            </label>
             <input
               type="number"
               name="spin"
@@ -380,7 +490,10 @@ const BilliardsProj = () => {
             />
           </div>
           <div className="form-group">
-            <label>Enter the mass distribution:</label>
+            <label>
+              mass distribution
+              <QuestionMark tooltipText="Enter the mass distribution η (range 0-1)." />
+            </label>
             <input
               type="number"
               name="eta"
@@ -390,7 +503,10 @@ const BilliardsProj = () => {
             />
           </div>
           <div className="form-group">
-            <label>Enter the number of collisions (+1):</label>
+            <label>
+              number of collisions
+              <QuestionMark tooltipText="Enter the number of collisions + 1 (range 0-1000)." />
+            </label>
             <input
               type="number"
               name="n"

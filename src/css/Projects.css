@@ -157,7 +157,7 @@ input[type="radio"] {
   color: #333;
 }
 
-.katex { font-size: 1.05em !important;color: #333 !important; }
+.katex { font-size: 1.05em !important;color: #333 !important;}
 
 .custom-list {
   list-style-type: none;
@@ -182,4 +182,20 @@ input[type="radio"] {
 .gif {
   max-width: 100%; /* Adjust the width as needed */
   height: auto;
+}
+
+.my-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.my-table th, .my-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.my-table th {
+  background-color: #f2f2f2;
 }
