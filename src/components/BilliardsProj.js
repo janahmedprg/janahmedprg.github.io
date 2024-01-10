@@ -233,7 +233,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/file/d/1jQ7dbvmD3GjKUg7dRGlv_gk4yU3INmJM/preview"
+              src="https://drive.google.com/uc?export=view&id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
               title="Click for the larger version."
               alt="GIF 1"
             />
@@ -245,7 +245,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/file/d/16nH1yDDSJ73bzru8CKaibwYcfFUqeDvb/preview"
+              src="https://drive.google.com/uc?export=view&id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
               title="Click for the larger version."
               alt="GIF 2"
             />
@@ -257,7 +257,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/file/d/1x33Rf3fzbFzUBQxoZs1LEni37K4v9DFP/preview"
+              src="https://drive.google.com/uc?export=view&id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
               title="Click for the larger version."
               alt="GIF 3"
             />
