@@ -4,6 +4,9 @@ import "../css/Projects.css";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import QuestionMark from "../utils/QuestionMark";
+import gif1 from "../img/ellipse_ec0.5_gamma0.1_spin0.0_iter360000_half_3d.gif";
+import gif2 from "../img/ellipse_ec0.5_gamma0.707_spin0.0_iter360000_half_3d.gif";
+import gif3 from "../img/ellipse_ec0.5_gamma3_spin0.0_iter360000_half_3d.gif";
 
 const POL_API_KEY = process.env.REACT_APP_POL_API_KEY;
 
@@ -129,7 +132,8 @@ const BilliardsProj = () => {
     try {
       const queryParams = new URLSearchParams(parameters);
       const response = await fetch(
-        `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
+        `https://billiards.com/polygon?key=${POL_API_KEY}&${queryParams}`
+        // `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
       );
 
       console.log("Img fetched");
@@ -233,7 +237,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/uc?export=view&id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
+              src={gif1}
               title="Click for the larger version."
               alt="GIF 1"
             />
@@ -245,7 +249,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/uc?export=view&id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
+              src={gif2}
               title="Click for the larger version."
               alt="GIF 2"
             />
@@ -257,7 +261,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/uc?export=view&id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
+              src={gif3}
               title="Click for the larger version."
               alt="GIF 3"
             />
