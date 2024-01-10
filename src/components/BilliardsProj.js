@@ -132,8 +132,7 @@ const BilliardsProj = () => {
     try {
       const queryParams = new URLSearchParams(parameters);
       const response = await fetch(
-        `https://billiards.com/polygon?key=${POL_API_KEY}&${queryParams}`
-        // `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
+        `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
       );
 
       console.log("Img fetched");
