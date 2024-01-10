@@ -159,8 +159,8 @@ const BilliardsProj = () => {
     {
       shape: "Pentagon",
       eta: [
-        "\\frac{2}{\\pi}\\arccos\\left(\\frac{\\sqrt{1+\\cos\\left(\\frac{2\\pi}{3}\\right)}}{\\sqrt{2}\\cos\\left(\\frac{3\\pi}{10}\\right)}\\right) \\approx 0.35",
-        "1-\\frac{2}{\\pi}\\arccos\\left(\\frac{\\sqrt{1+\\cos\\left(\\frac{2\\pi}{3}\\right)}}{\\sqrt{2}\\cos\\left(\\frac{3\\pi}{10}\\right)}\\right) \\approx 0.65",
+        "\\frac{2}{\\pi}\\arccos\\left(\\frac{\\sqrt{1+\\cos\\left(\\frac{2\\pi}{3}\\right)}}{\\sqrt{2}\\cos\\left(\\frac{3\\pi}{10}\\right)}\\right) \\approx 0.3524",
+        "1-\\frac{2}{\\pi}\\arccos\\left(\\frac{\\sqrt{1+\\cos\\left(\\frac{2\\pi}{3}\\right)}}{\\sqrt{2}\\cos\\left(\\frac{3\\pi}{10}\\right)}\\right) \\approx 0.6476",
       ],
       possiblePeriods: ["6, 8, 10, 14, 20, 30, 40", "6, 10, 20, 30, 40"],
     },
@@ -233,7 +233,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/uc?export=view&id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
+              src="https://drive.google.com/uc?export=view&id=1jQ7dbvmD3GjKUg7dRGlv_gk4yU3INmJM"
               title="Click for the larger version."
               alt="GIF 1"
             />
@@ -245,7 +245,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/uc?export=view&id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
+              src="https://drive.google.com/uc?export=view&id=16nH1yDDSJ73bzru8CKaibwYcfFUqeDvb"
               title="Click for the larger version."
               alt="GIF 2"
             />
@@ -257,7 +257,7 @@ const BilliardsProj = () => {
           >
             <img
               className="gif"
-              src="https://drive.google.com/uc?export=view&id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
+              src="https://drive.google.com/uc?export=view&id=1x33Rf3fzbFzUBQxoZs1LEni37K4v9DFP"
               title="Click for the larger version."
               alt="GIF 3"
             />
