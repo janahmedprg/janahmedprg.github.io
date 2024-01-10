@@ -206,7 +206,11 @@ const BilliardsProj = () => {
           . A view of the progression of the dynamics is given by Figure 1.
         </p>
         <div className="gif-row">
-          <a href="https://drive.google.com/file/d/1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2/view">
+          <a
+            href="https://drive.google.com/file/d/1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className="gif"
               src="https://drive.google.com/uc?export=view&id=1C56R2iKD8UPxEWqBWNSLrH4aLGmnlaw2"
@@ -214,7 +218,11 @@ const BilliardsProj = () => {
               alt="GIF 1"
             />
           </a>
-          <a href="https://drive.google.com/file/d/1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC/view">
+          <a
+            href="https://drive.google.com/file/d/1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className="gif"
               src="https://drive.google.com/uc?export=view&id=1RBE_CgVYYmJpDtErUu8B69IFCoMvpfxC"
@@ -222,7 +230,11 @@ const BilliardsProj = () => {
               alt="GIF 2"
             />
           </a>
-          <a href="https://drive.google.com/file/d/17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p/view">
+          <a
+            href="https://drive.google.com/file/d/17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className="gif"
               src="https://drive.google.com/uc?export=view&id=17FACUlWNI-Z4KOAA4Vj2AgOjugzEph2p"
