@@ -180,6 +180,6 @@ input[type="radio"] {
 }
 
 .gif {
-  max-width: 266.66666px; /* Adjust the width as needed */
+  max-width: 100%; /* Adjust the width as needed */
   height: auto;
 }
