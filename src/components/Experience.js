@@ -31,7 +31,7 @@ function Experience() {
           icon={<SchoolIcon />}
         >
           <h3 className="vertical-timeline-element-title">
-            Universtiy of Delaware
+            University of Delaware
           </h3>
           <h4 className="vertical-timeline-element-subtitle">
             Bachelor of Science in Applied Mathematics
