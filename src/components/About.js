@@ -22,7 +22,8 @@ const About = () => {
         <img src={janpic} alt="Jan Ahmed" className="profile-picture" />
         <h2>About Me</h2>
         <p>
-          <b>Main research interests:</b> Markov Chains, Brownian Motion.
+          <b>Main research interests:</b> Markov Chains, Brownian Motion,
+          Probability.
         </p>
         <div
           className={`collapsible-container ${isOpen1 ? "open" : "closed"}`}
@@ -216,6 +217,8 @@ const About = () => {
         <p>
           Fun fact about me: My Erdős number is at most 5 (J. Ahmed-{">"}C. Cox-
           {">"}M. Hutchings-{">"}F. Morgan-{">"}Z. Füredi-{">"}P. Erdős).
+          Another fun fact about me is that I lived in Czech Republic for 16
+          years.
         </p>
       </div>
     </section>
