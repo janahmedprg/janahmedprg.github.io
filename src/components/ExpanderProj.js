@@ -1,4 +1,5 @@
 import "../css/Projects.css";
+import { InlineMath } from "react-katex";
 
 const ExpanderProj = () => {
   return (
@@ -6,10 +7,11 @@ const ExpanderProj = () => {
       <div className="projects-content">
         <h2>Lubotzky-Phillips-Sarnak Graphs</h2>
         <p>
-          The objective of this research project was to improve existing bounds
-          on the independence number of Ramanujan graphs. Our focus was on a
-          specific family known as Lubotzky-Phillips-Sarnak (LPS) Graphs. In
-          order to grasp the problem, I studied the book{" "}
+          Under the supervision of Professor Cioaba and Ph.D. student John
+          Byrne, the objective of this research project was to improve existing
+          bounds on the independence number of Ramanujan graphs. Our focus was
+          on a specific family known as Lubotzky-Phillips-Sarnak (LPS) Graphs.
+          In order to grasp the problem, I studied the book{" "}
           <a
             href="https://math.bme.hu/~gabor/oktatas/SztoM/DavidoffSarnakValette.pdf"
             target="_blank"
@@ -29,9 +31,10 @@ const ExpanderProj = () => {
         </p>
         <h2>Synchronizing Expanders</h2>
         <p>
-          The aim of this research project was to improve the lower bound on the
-          regularity of Ramanujan graphs that ensure global synchronization. Our
-          primary reference was the research paper{" "}
+          Under the supervision of Professor Cioaba and Ph.D. student Isabele
+          Byrne, the aim of this research project was to improve the lower bound
+          on the regularity of Ramanujan graphs that ensure global
+          synchronization. Our primary reference was the research paper{" "}
           <a
             href="https://arxiv.org/abs/2210.12788"
             target="_blank"
@@ -56,7 +59,36 @@ const ExpanderProj = () => {
           .
         </p>
         <h2>Disconnecting vertex vets in distance regular graphs</h2>
-        <p></p>
+        <p>
+          Under the supervision of Professor Cioaba and Ph.D. student Isabele
+          Byrne, the objective of this research project was to either prove or
+          disprove an open problem proposed by Brouwer. The statement is as
+          follows:{" "}
+        </p>
+        <div className="thm-container">
+          <strong>Problem 41:</strong> One needs to remove at least{" "}
+          <InlineMath>2k - 2 - a_1</InlineMath> vertices to disconnect a DRG
+          with a diameter greater than or equal to 3, such that each component
+          has at least 2 vertices.
+        </div>
+        <p>
+          We followed the paper{" "}
+          <a
+            href="https://arxiv.org/abs/1105.0796"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontStyle: "italic" }}
+          >
+            On a conjecture of Brouwer involving the connectivity of strongly
+            regular graphs
+          </a>{" "}
+          by S. M. Cioaba, K. Kim, J. H. Koolen. Inspired by the proof of
+          Proposition 4.1 in the paper, we were able to prove that a family of
+          distance regular graphs, namely the Hamming graphs, satisfies the
+          proposed statement. Although we attempted to explore Johnson graphs,
+          time constraints prevented us from conducting a comprehensive
+          exploration.
+        </p>
       </div>
     </section>
   );
