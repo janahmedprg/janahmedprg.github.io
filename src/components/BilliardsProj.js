@@ -177,16 +177,17 @@ const BilliardsProj = () => {
       <div className="projects-content">
         <h2>No-Slip Billiards</h2>
         <p>
-          In our{" "}
+          In our published paper{" "}
           <a
             href="https://pubs.aip.org/aip/cha/article-abstract/32/2/023102/2835590/No-slip-billiards-with-particles-of-variable-mass"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ fontStyle: "italic" }}
           >
-            published paper
-          </a>{" "}
-          we provided results on a type of mathematical billiards called no-slip
-          billiards, that have the properties of having perfectly rough
+            No slip billiards with particles of variable mass
+          </a>
+          . we provided results on a type of mathematical billiards called
+          no-slip billiards, that have the properties of having perfectly rough
           boundaries and at collision there is no loss of energy. Our main
           result is the following Theorem where the mass distribution constant
           ranges from <InlineMath>\eta = 0</InlineMath> which is the specular
@@ -341,17 +342,43 @@ const BilliardsProj = () => {
           polygon no-slip billiard.
         </p>
         <p>
-          Detailed information about this research project can be found on our{" "}
+          Detailed information about this research project can be found on our
+          published paper{" "}
           <a
             href="https://pubs.aip.org/aip/cha/article-abstract/32/2/023102/2835590/No-slip-billiards-with-particles-of-variable-mass"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ fontStyle: "italic" }}
           >
-            published paper
+            No slip billiards with particles of variable mass
           </a>
           .
         </p>
-        <h3>Try it yourself</h3>
+        <h2>Galton Boards</h2>
+        <p>
+          In a second published paper{" "}
+          <a
+            href="https://arxiv.org/abs/2208.07790"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontStyle: "italic" }}
+          >
+            Dynamics of the no-slip Galton board
+          </a>
+          , we conducted a study on the ideal Galton board and Lorentz gas
+          billiard models, which are typically analyzed without considering
+          friction and rotational velocity. We considered having the dynamics of
+          a more general model that involves no-slip collisions. Through
+          numerical experiments and phase portrait analysis, we found that,
+          unlike in specular dispersing billiards, introducing a small force
+          maintains regularity. Conversely, in line with specular billiards, a
+          stronger force can lead to the emergence of new structures, including
+          invariant regions. Additionally, our analytical findings reveal that
+          introducing an external force results in the proliferation of
+          periodicity, unveiling new types of periodic orbits not present in the
+          absence of external forces.
+        </p>
+        <h2>Try it yourself</h2>
         <p>
           Enter the following intitial conditions and press "Run experiment" to
           see the traces of the trajectories of the no-slip billiard system. You

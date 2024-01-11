@@ -9,7 +9,12 @@ const Projects = () => {
     <section className="projects">
       <div className="projects-content">
         <h2>Research Projects</h2>
-        <div className="project">
+        <div
+          className="project"
+          onClick={() => {
+            navigate("expanders");
+          }}
+        >
           <h3>Spectral Graph Theory Research</h3>
           <ul className="proj">
             <li>
