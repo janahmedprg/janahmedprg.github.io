@@ -7,11 +7,11 @@ const ExpanderProj = () => {
       <div className="projects-content">
         <h2>Lubotzky-Phillips-Sarnak Graphs</h2>
         <p>
-          Under the supervision of Professor Cioaba and Ph.D. student John
-          Byrne, the objective of this research project was to improve existing
-          bounds on the independence number of Ramanujan graphs. Our focus was
-          on a specific family known as Lubotzky-Phillips-Sarnak (LPS) Graphs.
-          In order to grasp the problem, I studied the book{" "}
+          Under the supervision of Professor Sebastian Cioaba and Ph.D. student
+          John Byrne, the objective of this research project was to improve
+          existing bounds on the independence number of Ramanujan graphs. Our
+          focus was on a specific family known as Lubotzky-Phillips-Sarnak (LPS)
+          Graphs. In order to grasp the problem, I studied the book{" "}
           <a
             href="https://math.bme.hu/~gabor/oktatas/SztoM/DavidoffSarnakValette.pdf"
             target="_blank"
@@ -31,9 +31,9 @@ const ExpanderProj = () => {
         </p>
         <h2>Synchronizing Expanders</h2>
         <p>
-          Under the supervision of Professor Cioaba and Ph.D. student Isabele
-          Byrne, the aim of this research project was to improve the lower bound
-          on the regularity of Ramanujan graphs that ensure global
+          Under the supervision of Professor Sebastian Cioaba and Ph.D. student
+          Isabele Byrne, the aim of this research project was to improve the
+          lower bound on the regularity of Ramanujan graphs that ensure global
           synchronization. Our primary reference was the research paper{" "}
           <a
             href="https://arxiv.org/abs/2210.12788"
@@ -60,10 +60,10 @@ const ExpanderProj = () => {
         </p>
         <h2>Disconnecting vertex vets in distance regular graphs</h2>
         <p>
-          Under the supervision of Professor Cioaba and Ph.D. student Isabele
-          Byrne, the objective of this research project was to either prove or
-          disprove an open problem proposed by Brouwer. The statement is as
-          follows:{" "}
+          Under the supervision of Professor Sebastian Cioaba and Ph.D. student
+          Isabele Byrne, the objective of this research project was to either
+          prove or disprove an open problem proposed by Brouwer. The statement
+          is as follows:{" "}
         </p>
         <div className="thm-container">
           <strong>Problem 41:</strong> One needs to remove at least{" "}

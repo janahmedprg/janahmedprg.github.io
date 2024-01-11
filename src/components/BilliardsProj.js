@@ -185,10 +185,11 @@ const BilliardsProj = () => {
             style={{ fontStyle: "italic" }}
           >
             No slip billiards with particles of variable mass
-          </a>
-          . we provided results on a type of mathematical billiards called
-          no-slip billiards, that have the properties of having perfectly rough
-          boundaries and at collision there is no loss of energy. Our main
+          </a>{" "}
+          conducted under the guidance of Professor Christopher Cox, we provided
+          results on a type of mathematical billiards called no-slip billiards.
+          This type of billiard systems have the properties of having perfectly
+          rough boundaries and at collision there is no loss of energy. Our main
           result is the following Theorem where the mass distribution constant
           ranges from <InlineMath>\eta = 0</InlineMath> which is the specular
           billiards case, to <InlineMath>\eta = 1</InlineMath> which is the
