@@ -155,9 +155,9 @@ const About = () => {
                 learning styles, I cultivated an inclusive tutoring environment
                 that empowered students from diverse backgrounds to excel in
                 their studies. As an example one of my students had a hard time
-                visualizing 3D objects. The next tutoring session I brought Lego
-                pieces to model these 3 dimensional mathematical objects for the
-                student. Soon after the student gained a much better
+                visualizing 3D objects. The next tutoring session I brought
+                Play-Doh to model these 3 dimensional mathematical objects for
+                the student. Soon after the student gained a much better
                 understanding of the concepts through this approach.
               </p>
               <p>
@@ -185,7 +185,7 @@ const About = () => {
                 through algorithmic problems. Organizing workshops and
                 competitions, I fostered an inclusive environment that welcomed
                 diverse skill levels and backgrounds. This experience deepened
-                my appreciation for collaborative learning and my honed
+                my appreciation for collaborative learning and honed my
                 leadership skills while creating a lasting legacy.
               </p>
               <p>
