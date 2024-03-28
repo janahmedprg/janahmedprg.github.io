@@ -53,8 +53,8 @@ function Experience() {
               <b>Co-Founder & Co-President:</b> Competitive Programming Club
             </li>
             <li>
-              <b>Directed Reading Program:</b> Reading Introduction to
-              Probability Models by Sheldon M. Ross
+              <b>Directed Reading Program:</b> Introduction to Probability
+              Models by Sheldon M. Ross
             </li>
             <li>
               <b>Relevant Coursework:</b> Probability Theory, Linear Algebra,
