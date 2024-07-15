@@ -109,6 +109,7 @@
         width: 100px;
         height: max-content;
         margin: 10px 0px;
+        border-width: 10px;
     }
     .container-home-content > h2 {
         color:#333;

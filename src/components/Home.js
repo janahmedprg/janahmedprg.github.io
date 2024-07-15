@@ -1,6 +1,6 @@
 import janpic from "../img/janpic.jpg";
 import "../css/Home.css";
-import resume from "../docs/Resume-Jan_Ahmed.pdf";
+import resume from "../docs/2023_Research.pdf";
 
 import {
   FaFilePdf,

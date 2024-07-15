@@ -173,8 +173,8 @@ const BilliardsProj = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
   return (
-    <section className="projects">
-      <div className="projects-content">
+    <section className="research">
+      <div className="research-content">
         <h2>No-Slip Billiards</h2>
         <p>
           In our published paper{" "}

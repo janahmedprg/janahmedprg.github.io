@@ -1,10 +1,11 @@
 import "../css/Research.css";
 import { InlineMath } from "react-katex";
+import sync from "../docs/2023_Research.pdf";
 
 const ExpanderProj = () => {
   return (
-    <section className="projects">
-      <div className="projects-content">
+    <section className="research">
+      <div className="research-content">
         <h2>Lubotzky-Phillips-Sarnak Graphs</h2>
         <p>
           Under the supervision of Professor Sebastian Cioaba and Ph.D. student
@@ -49,11 +50,7 @@ const ExpanderProj = () => {
           results. Unfortunately, time constraints prevented us from providing
           new results in this project. For more detailed information, please
           refer to my{" "}
-          <a
-            href="https://drive.google.com/file/d/1oURdZfjiP06EJtQw4gpRxxesqFahX1AC/view"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={sync} target="_blank" rel="noopener noreferrer">
             notes
           </a>
           .
