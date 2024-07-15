@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.8def4892.css",
-    "main.js": "/static/js/main.277507a6.js",
+    "main.js": "/static/js/main.543966f1.js",
     "static/js/787.5d2b1d77.chunk.js": "/static/js/787.5d2b1d77.chunk.js",
     "static/media/holoflash.mp4": "/static/media/holoflash.462d57f1c409279adc9b.mp4",
     "static/media/udalice.mp4": "/static/media/udalice.ddc384348a7b6f191ef3.mp4",
@@ -25,6 +25,8 @@
     "static/media/KaTeX_Main-Bold.woff": "/static/media/KaTeX_Main-Bold.0c3b8929d377c0e9b2f3.woff",
     "static/media/KaTeX_AMS-Regular.woff2": "/static/media/KaTeX_AMS-Regular.73ea273a72f4aca30ca5.woff2",
     "static/media/KaTeX_Typewriter-Regular.ttf": "/static/media/KaTeX_Typewriter-Regular.c5c02d763c89380dcb4e.ttf",
+    "static/media/sudokusolver.png": "/static/media/sudokusolver.99dfc18b796d2136d505.png",
+    "static/media/web.png": "/static/media/web.343ee5c6cf82fb45a5b1.png",
     "static/media/devpost.png": "/static/media/devpost.15ce149248e1f549568e.png",
     "static/media/KaTeX_Main-Regular.woff2": "/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
     "static/media/KaTeX_Main-Bold.woff2": "/static/media/KaTeX_Main-Bold.39890742bc957b368704.woff2",
@@ -82,12 +84,13 @@
     "static/media/flutter.svg": "/static/media/flutter.1b8f9149e623a24ce67a84d9b25b5d92.svg",
     "static/media/mongodb-icon.svg": "/static/media/mongodb-icon.8869f2f6c8ef3b4798e6fa8649bfaac0.svg",
     "index.html": "/index.html",
+    "static/media/vercel-icon.svg": "/static/media/vercel-icon.c7601497a42f8804800988599277e84f.svg",
     "main.8def4892.css.map": "/static/css/main.8def4892.css.map",
-    "main.277507a6.js.map": "/static/js/main.277507a6.js.map",
+    "main.543966f1.js.map": "/static/js/main.543966f1.js.map",
     "787.5d2b1d77.chunk.js.map": "/static/js/787.5d2b1d77.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8def4892.css",
-    "static/js/main.277507a6.js"
+    "static/js/main.543966f1.js"
   ]
 }
