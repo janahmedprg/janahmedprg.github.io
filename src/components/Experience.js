@@ -1,7 +1,7 @@
 import React from "react";
 import "react-vertical-timeline-component/style.min.css";
-import SchoolIcon from "@mui/icons-material/School";
-import WorkIcon from "@mui/icons-material/Work";
+// import SchoolIcon from "@mui/icons-material/School";
+// import WorkIcon from "@mui/icons-material/Work";
 import "../css/Experience.css";
 
 const Timeline = ({ title, events }) => (
@@ -22,22 +22,39 @@ function Experience() {
   const educationEvents = [
     {
       title: "University of Delaware",
-      description:
-        " B.S. in Applied Mathematics and B.S. in Computer Science; Cum Laude (GPA: 3.94/4.00)",
+      description: "B.S. in Computer Science, 2020 - 2024",
+    },
+    {
+      title: "University of Delaware",
+      description: "B.S. in Applied Mathematics, 2020 - 2024",
     },
   ];
 
   const experienceEvents = [
     {
-      title: "Software Development Engineer Intern",
-      description: "Amazon, Summer 2023",
+      title: "Capital One (Senior Design)",
+      description: "Software Engineer, 2023 - 2024",
     },
+    { title: "University of Delaware", description: "Researcher 2022 - 2024" },
+    {
+      title: "Amazon",
+      description: "Software Development Engineer Intern, Summer 2023",
+    },
+    { title: "University of Delaware", description: "Researcher 2021 - 2022" },
   ];
 
   const teachingEvents = [
     {
-      title: "Teaching Assistant",
-      description: "University of Delaware, Fall 2022",
+      title: " University of Delaware",
+      description: "Classroom and Lab Assistant, 2022 - 2024",
+    },
+    {
+      title: "University of Delaware",
+      description: "Homework and Exams Grader, 2022 - 2024",
+    },
+    {
+      title: "University of Delaware",
+      description: "Mathematics tutor, 2022 - 2024",
     },
   ];
 
