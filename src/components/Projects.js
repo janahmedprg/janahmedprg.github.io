@@ -14,6 +14,9 @@ import learner from "../img/learnerai.mp4";
 import kapperai from "../img/kapperai.mp4";
 import adaai from "../img/adaai.mp4";
 import udalice from "../img/udalice.mp4";
+import sudokusolver from "../img/sudokusolver.png";
+import { ReactComponent as Vercel } from "../img/vercel-icon.svg";
+import web from "../img/web.png";
 
 const Projects = () => {
   const [selectedProj, setSelectedProj] = useState("holoflash");
@@ -385,13 +388,21 @@ const Projects = () => {
                     <h4>Skills learned</h4>
                     <ul>
                       <li>
-                        <Gcp style={{ height: "13pt", width: "fit-content" }} />{" "}
-                        Google Cloud
+                        <Vercel
+                          style={{ height: "13pt", width: "fit-content" }}
+                        />{" "}
+                        Vercel
                       </li>
                       <li>Backtracking</li>
                     </ul>
                   </div>
-                  <div className="vid"></div>
+                  <div className="vid">
+                    <img
+                      style={{ height: "150px" }}
+                      src={sudokusolver}
+                      alt="sudoku solver"
+                    />
+                  </div>
                   <div className="git">
                     <h4>Visit</h4>
                     <p className="gitp">
@@ -401,6 +412,16 @@ const Projects = () => {
                         rel="noopener noreferrer"
                       >
                         <FaGithub /> GitHub Repo
+                      </a>
+                    </p>
+                    <p className="gitp">
+                      <a
+                        href="https://sudoku-solver-janahmedprgs-projects.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={web} alt="Jan Ahmed" className="devpostpic" />{" "}
+                        Website
                       </a>
                     </p>
                   </div>
