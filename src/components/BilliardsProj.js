@@ -1,6 +1,6 @@
 // PlotPage.js
 import React, { useState, useEffect } from "react";
-import "../css/Projects.css";
+import "../css/Research.css";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import QuestionMark from "../utils/QuestionMark";

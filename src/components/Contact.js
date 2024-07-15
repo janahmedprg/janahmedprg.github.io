@@ -10,7 +10,7 @@ import "../css/Contact.css"; // Import the stylesheet
 
 const Contact = () => {
   return (
-    <section className="contact">
+    <section className="contact" id="contact">
       <div className="contact-content">
         <h2>Contact Me</h2>
         <p className="cnt">

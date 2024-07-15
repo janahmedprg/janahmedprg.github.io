@@ -1,0 +1,125 @@
+.container-home-content > h2 {
+    color:#333;
+    margin-top: 0px;
+}
+
+.container-home-content > h3{
+    color:#007bff;
+    margin-top: 0px;
+}
+
+.container-home-content > p{
+    font-size: 13pt;
+    color: #333;
+}
+
+/* .home-content > h3{
+    font-size: ;
+} */
+
+.container-home-content{
+    margin: 0px 10px;
+    padding: 0px 50px;
+}
+
+.home-content{
+    width: 100%;
+    padding-top: 5vh;
+    display: flex;
+    max-width: 80%;
+}
+.profile-picture {
+    width: 200px; /* Adjust the width as needed */
+    height: max-content;
+    border-radius: 5%; /* Make the image round */
+    border-style: solid;
+    border-color: #007bff;
+    border-width: 20px;
+}
+
+.duoImg{
+    margin-top: 10px;
+    width: 300px;
+}
+
+.img-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.web-links-con{
+    margin-top: 50px;
+}
+
+.img-container>.social-links {
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+.img-container>.social-links li {
+    margin: 10px 0px;  
+}
+  
+.img-container>.social-links>li>.linkscon a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 1s ease;
+}
+  
+.img-container>.social-links>li>.linkscon a:hover {
+    color: #0056b3;
+}
+.img-container>.social-links>li>.linkscon{
+    margin: 0px;
+    width: fit-content;
+}
+.img-container>.social-links>li>.linkscon:hover{
+    animation: gelatine 1s infinite;
+}
+
+.container-home-content>ul>li{
+    font-size: 13pt;
+    color: #333;
+}
+
+@keyframes gelatine {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+@media (max-width: 650px) { 
+    .home-content{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+        align-items: center;
+        max-width: 100%;
+    }
+    .container-home-content{
+        margin: 0px 10px;
+        padding: 0px 10px;
+    }
+    .profile-picture {
+        width: 100px;
+        height: max-content;
+        margin: 10px 0px;
+    }
+    .container-home-content > h2 {
+        color:#333;
+        margin: 0px;
+        font-size: larger;
+    }
+
+    .container-home-content > h3 {
+        font-size: large;
+    }
+    .duoImg{
+        width: 200px;
+    } 
+}

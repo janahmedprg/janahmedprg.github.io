@@ -1,4 +1,4 @@
-import "../css/Projects.css";
+import "../css/Research.css";
 import { InlineMath } from "react-katex";
 
 const ExpanderProj = () => {
