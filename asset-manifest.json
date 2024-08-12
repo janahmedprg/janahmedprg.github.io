@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.929164c9.css",
-    "main.js": "/static/js/main.56379447.js",
+    "main.css": "/static/css/main.d397e2dd.css",
+    "main.js": "/static/js/main.4d989603.js",
     "static/js/787.5d2b1d77.chunk.js": "/static/js/787.5d2b1d77.chunk.js",
     "static/media/holoflash.mp4": "/static/media/holoflash.462d57f1c409279adc9b.mp4",
     "static/media/udalice.mp4": "/static/media/udalice.ddc384348a7b6f191ef3.mp4",
@@ -94,12 +94,12 @@
     "static/media/mongodb-icon.svg": "/static/media/mongodb-icon.8869f2f6c8ef3b4798e6fa8649bfaac0.svg",
     "index.html": "/index.html",
     "static/media/vercel-icon.svg": "/static/media/vercel-icon.c7601497a42f8804800988599277e84f.svg",
-    "main.929164c9.css.map": "/static/css/main.929164c9.css.map",
-    "main.56379447.js.map": "/static/js/main.56379447.js.map",
+    "main.d397e2dd.css.map": "/static/css/main.d397e2dd.css.map",
+    "main.4d989603.js.map": "/static/js/main.4d989603.js.map",
     "787.5d2b1d77.chunk.js.map": "/static/js/787.5d2b1d77.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.929164c9.css",
-    "static/js/main.56379447.js"
+    "static/css/main.d397e2dd.css",
+    "static/js/main.4d989603.js"
   ]
 }
