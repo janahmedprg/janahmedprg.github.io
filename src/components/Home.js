@@ -83,7 +83,7 @@ const Home = () => {
             progress below).
             <br />
             <img
-              src="https://duolingo-stats-card.vercel.app/api?username=ahmedak_jan&theme=sky"
+              src="https://duolingo-stats-card.vercel.app/api?id=908659957&theme=sky"
               alt="Duolingo Stats"
               className="duoImg"
             />
