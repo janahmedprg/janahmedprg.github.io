@@ -54,7 +54,7 @@ function Experience() {
     },
     {
       title: "University of Delaware",
-      description: "Mathematics tutor, 2022 - 2024",
+      description: "Mathematics tutor, 2021 - 2024",
     },
   ];
 
