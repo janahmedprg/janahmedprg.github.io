@@ -1,6 +1,7 @@
 import janpic from "../img/janpic.jpg";
 import "../css/Home.css";
 import resume from "../docs/Resume-Jan_Ahmed.pdf";
+import transcript from "../docs/Transcript_JANAHMED.pdf";
 
 import {
   FaFilePdf,
@@ -8,6 +9,7 @@ import {
   FaGithub,
   FaGraduationCap,
 } from "react-icons/fa";
+import { GrCertificate } from "react-icons/gr";
 
 const Home = () => {
   return (
@@ -19,6 +21,13 @@ const Home = () => {
             <p className="linkscon">
               <a href={resume} target="_blank" rel="noreferrer">
                 <FaFilePdf /> Resume
+              </a>
+            </p>
+          </li>
+          <li>
+            <p className="linkscon">
+              <a href={transcript} target="_blank" rel="noreferrer">
+                <GrCertificate /> Transcript
               </a>
             </p>
           </li>
@@ -55,7 +64,6 @@ const Home = () => {
               </a>
             </p>
           </li>
-          {/* Add more social media links as needed */}
         </ul>
       </div>
       <div className="container-home-content">
