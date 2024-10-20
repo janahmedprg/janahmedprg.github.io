@@ -32,8 +32,8 @@ function Experience() {
 
   const experienceEvents = [
     {
-      title: "Capital One (Senior Design)",
-      description: "Software Engineer, 2023 - 2024",
+      title: "Amazon Web Services",
+      description: "Software Engineer, 2024 - Present",
     },
     { title: "University of Delaware", description: "Researcher 2022 - 2024" },
     {
