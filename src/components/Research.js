@@ -16,7 +16,7 @@ import lis3 from "../img/lis3.png";
 const Research = () => {
   const [selectedProj, setSelectedProj] = useState("graph");
   const handleClick = (event) => {
-    const { id } = event.currentTarget; // Get the id of the clicked div
+    const { id } = event.currentTarget;
     setSelectedProj(id); // Set the selectedProj state to the id
   };
 
