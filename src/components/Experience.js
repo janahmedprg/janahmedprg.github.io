@@ -33,12 +33,12 @@ function Experience() {
   const experienceEvents = [
     {
       title: "Amazon Web Services",
-      description: "Software Engineer, 2024 - Present",
+      description: "SDE1, 2024 - Present",
     },
     { title: "University of Delaware", description: "Researcher 2022 - 2024" },
     {
-      title: "Amazon",
-      description: "Software Development Engineer Intern, Summer 2023",
+      title: "Amazon Web Services",
+      description: "Software Engineer Intern, Summer 2023",
     },
     { title: "University of Delaware", description: "Researcher 2021 - 2022" },
   ];

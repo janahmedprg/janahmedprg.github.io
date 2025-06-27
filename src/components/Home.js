@@ -69,9 +69,9 @@ const Home = () => {
       <div className="container-home-content">
         <h2>Hi there, I'm Jan.</h2>
         <h3>
-          I'm a software engineer and a mathematics researcher who graduated Cum
-          Laude in Spring 2024 with a B.S. in Computer Science and a B.S. in
-          Applied Mathematics at the University of Delaware.
+          I'm a SDE1 at AWS and a mathematics researcher on the side who
+          graduated Cum Laude in Spring 2024 with a B.S. in Computer Science and
+          a B.S. in Applied Mathematics at the University of Delaware.
         </h3>
 
         <p>
