@@ -1,16 +1,16 @@
 .container-home-content > h2 {
-    color:#333;
+    color: var(--text-primary);
     margin-top: 0px;
 }
 
 .container-home-content > h3{
-    color:#007bff;
+    color: var(--accent);
     margin-top: 0px;
 }
 
 .container-home-content > p{
     font-size: 13pt;
-    color: #333;
+    color: var(--text-primary);
 }
 
 /* .home-content > h3{
@@ -33,7 +33,7 @@
     height: max-content;
     border-radius: 5%; /* Make the image round */
     border-style: solid;
-    border-color: #007bff;
+    border-color: var(--accent);
     border-width: 20px;
 }
 
@@ -63,14 +63,14 @@
 }
   
 .img-container>.social-links>li>.linkscon a {
-    color: #007bff;
+    color: var(--accent);
     text-decoration: none;
     font-size: 24px;
     transition: color 1s ease;
 }
   
 .img-container>.social-links>li>.linkscon a:hover {
-    color: #0056b3;
+    color: var(--accent-hover);
 }
 .img-container>.social-links>li>.linkscon{
     margin: 0px;
@@ -82,7 +82,7 @@
 
 .container-home-content>ul>li{
     font-size: 13pt;
-    color: #333;
+    color: var(--text-primary);
 }
 
 @keyframes gelatine {
@@ -112,7 +112,7 @@
         border-width: 10px;
     }
     .container-home-content > h2 {
-        color:#333;
+        color: var(--text-primary);
         margin: 0px;
         font-size: larger;
     }

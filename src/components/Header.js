@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 // import { Link } from "react-router-dom";
 import "../css/Header.css";
 
-const Header = () => {
+const Header = ({ theme, onToggleTheme }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -39,6 +39,15 @@ const Header = () => {
             <span className="navbar-brand">Jan Ahmed</span>
           </div>
           <button
+            type="button"
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+          >
+            {theme === "light" ? "Dark" : "Light"}
+          </button>
+          <button
+            type="button"
             className={`sidebar-toggle ${showSidebar ? "active" : ""}`}
             onClick={toggleSidebar}
           >
@@ -166,6 +175,14 @@ const Header = () => {
               </li>
             </ul>
           </div>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+          >
+            {theme === "light" ? "Dark" : "Light"}
+          </button>
         </nav>
       </div>
     );

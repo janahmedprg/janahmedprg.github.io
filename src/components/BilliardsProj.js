@@ -295,32 +295,32 @@ const BilliardsProj = () => {
         <table className="my-table">
           <thead>
             <tr>
-              <th style={{ color: "#333" }}>Shape</th>
-              <th style={{ color: "#333" }}>
+              <th style={{ color: "var(--text-primary)" }}>Shape</th>
+              <th style={{ color: "var(--text-primary)" }}>
                 Mass distribution{" "}
                 <InlineMath math="\large\boldsymbol{\eta}"></InlineMath>
               </th>
-              <th style={{ color: "#333" }}>Possible Periods</th>
+              <th style={{ color: "var(--text-primary)" }}>Possible Periods</th>
             </tr>
           </thead>
           <tbody>
             {tableData.map((row, index) => (
               <React.Fragment key={index}>
                 <tr>
-                  <td rowSpan={row.eta.length} style={{ color: "#333" }}>
+                  <td rowSpan={row.eta.length} style={{ color: "var(--text-primary)" }}>
                     {row.shape}
                   </td>
                   <td>
                     <InlineMath math={row.eta[0]} />
                   </td>
-                  <td style={{ color: "#333" }}>{row.possiblePeriods[0]}</td>
+                  <td style={{ color: "var(--text-primary)" }}>{row.possiblePeriods[0]}</td>
                 </tr>
                 {row.eta.slice(1).map((eta, etaIndex) => (
                   <tr key={etaIndex}>
                     <td>
                       <InlineMath math={eta} />
                     </td>
-                    <td style={{ color: "#333" }}>
+                    <td style={{ color: "var(--text-primary)" }}>
                       {row.possiblePeriods[etaIndex + 1]}
                     </td>
                   </tr>
@@ -574,7 +574,7 @@ const BilliardsProj = () => {
                 display: loading ? "none" : "block",
                 width: "100%", // Set the width to 100%
                 height: "auto", // Maintain the aspect ratio
-                border: "1px solid #ccc", // Add a border
+                border: "1px solid var(--border-strong)", // Add a border
                 borderRadius: "8px", // Add border-radius for rounded corners
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Add a subtle box shadow
               }}

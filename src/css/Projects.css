@@ -5,7 +5,7 @@
 }
 .projects-content>h2{
     text-align: center;
-    color: #333;
+    color: var(--text-primary);
 }
 .projects-container{
     display: flex;
@@ -33,9 +33,9 @@
 .project-card-con>.project {
     margin-left: 40px;
     padding: 15px 30px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px var(--shadow-color);
     height: 100%;
     margin-right: 40px;
 }
@@ -43,12 +43,12 @@
 .project-card-con>.project>h3 {
     margin: 20px 20px;
     margin-bottom: 10px;
-    color:#007bff;
+    color: var(--accent);
     text-align: left;
 }
 
 .project-card-con>.project>p {
-    color:#333;
+    color: var(--text-primary);
     font-size: 13pt;
 }
 
@@ -57,42 +57,42 @@
     padding: 10px;
     font-size: medium;
     width: 150px;
-    border: 1px solid #ddd;
-    color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px var(--shadow-color);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
   
 .selections>.project-item:hover {
-    background-color: lightgray;
+    background-color: var(--bg-card-hover);
 }
   
 .selections>.selected {
-    background-color: #007bff !important;
-    color: #fff;
+    background-color: var(--bg-selected) !important;
+    color: var(--text-on-accent);
 }
 
 .project-info-con>.about>h4{
-    color:#333;
+    color: var(--text-primary);
     font-size: 18pt;
     margin: 0px;
     text-align: left;
 }
 .project-info-con>.about>p{
-    color:#333;
+    color: var(--text-primary);
     font-size: 13pt;
     margin: 0px;
 }
 .project-info-con>.skills>h4{
-    color:#333;
+    color: var(--text-primary);
     font-size: 18pt;
     margin: 0px;
     text-align: left;
 }
 .project-info-con>.git>h4{
-    color:#333;
+    color: var(--text-primary);
     font-size: 18pt;
     margin: 0px;
     text-align: left;
@@ -106,13 +106,13 @@
 }
 
 .project-info-con>.skills>ul>li{
-    color:#333;
+    color: var(--text-primary);
     font-size: 16pt;
     margin-top: 5px;
 }
 
 .project-info-con>.git>.gitp a{
-    color: #007bff;
+    color: var(--accent);
     text-decoration: none;
     font-size: 16pt;
     transition: color 1s ease;
@@ -125,7 +125,7 @@
     height: 16pt;
 }
 .project-info-con>.git>.gitp>a:hover{
-    color: #0056b3;
+    color: var(--accent-hover);
 }
 .project-info-con>.git>.gitp:hover {
     animation: gelatine 1s infinite;

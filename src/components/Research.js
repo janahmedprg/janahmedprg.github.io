@@ -76,7 +76,7 @@ const Research = () => {
                         fontSize: "13pt",
                         listStyle: "none",
                         margin: "0px",
-                        color: "#333",
+                        color: "var(--text-primary)",
                         padding: "0px",
                       }}
                     >
@@ -87,7 +87,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -104,7 +104,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -119,7 +119,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -179,7 +179,7 @@ const Research = () => {
                         fontSize: "13pt",
                         listStyle: "none",
                         margin: "0px",
-                        color: "#333",
+                        color: "var(--text-primary)",
                         padding: "0px",
                       }}
                     >
@@ -190,7 +190,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -206,7 +206,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -221,7 +221,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -292,7 +292,7 @@ const Research = () => {
                         fontSize: "13pt",
                         listStyle: "none",
                         margin: "0px",
-                        color: "#333",
+                        color: "var(--text-primary)",
                         padding: "0px",
                       }}
                     >
@@ -303,7 +303,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -320,7 +320,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >
@@ -335,7 +335,7 @@ const Research = () => {
                           rel="noopener noreferrer"
                           style={{
                             fontStyle: "italic",
-                            color: "#007bff",
+                            color: "var(--accent)",
                             textDecoration: "none",
                           }}
                         >

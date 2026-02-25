@@ -11,8 +11,8 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #3498dbad; /* Use your preferred blue color */
-  color: #fff;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   font-size: 14px;
   cursor: pointer;
   position: relative;
@@ -24,11 +24,11 @@
   left: 50%;
   width:max-content;
   max-width: 200px;
-  background-color: #fff;
-  color: black;
+  background-color: var(--text-on-accent);
+  color: var(--tooltip-text);
   padding: 5px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 2px 5px var(--shadow-color);
   display: none;
   z-index: 10;
 }

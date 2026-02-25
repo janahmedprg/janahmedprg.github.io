@@ -8,10 +8,10 @@ import Header from "./Header";
 import Contact from "./Contact";
 import Experience from "./Experience";
 
-const Sections = () => {
+const Sections = ({ theme, onToggleTheme }) => {
   return (
     <div className="container">
-      <Header></Header>
+      <Header theme={theme} onToggleTheme={onToggleTheme}></Header>
       <div style={{ height: "52px" }}></div>
       <section className="slides" id="about">
         <Home></Home>
