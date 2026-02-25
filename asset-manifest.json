@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b8de6e94.css",
-    "main.js": "/static/js/main.54e55678.js",
+    "main.css": "/static/css/main.2dcb6203.css",
+    "main.js": "/static/js/main.30d68678.js",
     "static/js/453.bd51ec1e.chunk.js": "/static/js/453.bd51ec1e.chunk.js",
     "static/media/holoflash.mp4": "/static/media/holoflash.462d57f1c409279adc9b.mp4",
     "static/media/udalice.mp4": "/static/media/udalice.ddc384348a7b6f191ef3.mp4",
@@ -73,7 +73,7 @@
     "static/media/KaTeX_Size4-Regular.ttf": "/static/media/KaTeX_Size4-Regular.4ad7c7e8bb8d10a34bb7.ttf",
     "static/media/KaTeX_SansSerif-Regular.woff2": "/static/media/KaTeX_SansSerif-Regular.cd5e231e0cc53b2cb2c0.woff2",
     "static/media/KaTeX_Script-Regular.woff2": "/static/media/KaTeX_Script-Regular.c81d1b2a4b75d3eded60.woff2",
-    "static/media/react.svg": "/static/media/react.19465659ecf7a1122618d3dcf23bf337.svg",
+    "static/media/react.svg": "/static/media/react.e27571eaed899c642345e71163624ef9.svg",
     "static/media/KaTeX_Caligraphic-Bold.woff": "/static/media/KaTeX_Caligraphic-Bold.d757c535a2e5902f1325.woff",
     "static/media/KaTeX_Caligraphic-Regular.woff": "/static/media/KaTeX_Caligraphic-Regular.db074fa22cf224af93d7.woff",
     "static/media/KaTeX_Size3-Regular.ttf": "/static/media/KaTeX_Size3-Regular.8d6b6822586eea3d3b20.ttf",
@@ -86,21 +86,21 @@
     "static/media/KaTeX_Size2-Regular.woff2": "/static/media/KaTeX_Size2-Regular.2960900c4f271311eb36.woff2",
     "static/media/KaTeX_Size4-Regular.woff2": "/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
-    "static/media/openai-icon.svg": "/static/media/openai-icon.9d40b87a92390981b2710141333f5e05.svg",
+    "static/media/openai-icon.svg": "/static/media/openai-icon.22e26a442d82091316fa92144976a1e7.svg",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "static/media/dart.svg": "/static/media/dart.0c02b4e6e3b6b3f9dba50fc3a1f0d8da.svg",
-    "static/media/discord-icon.svg": "/static/media/discord-icon.e8acd4edd73a336c52c908802eca7fe3.svg",
-    "static/media/google-cloud.svg": "/static/media/google-cloud.b61cc2495ce755b253c8a08cffbf353c.svg",
-    "static/media/flutter.svg": "/static/media/flutter.bdf630c3c42bd4eedcb58832da98d6cb.svg",
-    "static/media/mongodb-icon.svg": "/static/media/mongodb-icon.4688f9b5cd31b78325f782fd3d2cada2.svg",
+    "static/media/dart.svg": "/static/media/dart.43f24c1b66f787b5528fbe9deed39031.svg",
+    "static/media/discord-icon.svg": "/static/media/discord-icon.c28d78f8379b3e8cfde3cdc7cd4b511b.svg",
+    "static/media/google-cloud.svg": "/static/media/google-cloud.c228342a9f3fd951b32c2cfa069b50b0.svg",
+    "static/media/flutter.svg": "/static/media/flutter.1b8f9149e623a24ce67a84d9b25b5d92.svg",
+    "static/media/mongodb-icon.svg": "/static/media/mongodb-icon.8869f2f6c8ef3b4798e6fa8649bfaac0.svg",
     "index.html": "/index.html",
-    "static/media/vercel-icon.svg": "/static/media/vercel-icon.0d94e923424aa8a93432103a604aa0fb.svg",
-    "main.b8de6e94.css.map": "/static/css/main.b8de6e94.css.map",
-    "main.54e55678.js.map": "/static/js/main.54e55678.js.map",
+    "static/media/vercel-icon.svg": "/static/media/vercel-icon.c7601497a42f8804800988599277e84f.svg",
+    "main.2dcb6203.css.map": "/static/css/main.2dcb6203.css.map",
+    "main.30d68678.js.map": "/static/js/main.30d68678.js.map",
     "453.bd51ec1e.chunk.js.map": "/static/js/453.bd51ec1e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8de6e94.css",
-    "static/js/main.54e55678.js"
+    "static/css/main.2dcb6203.css",
+    "static/js/main.30d68678.js"
   ]
 }
