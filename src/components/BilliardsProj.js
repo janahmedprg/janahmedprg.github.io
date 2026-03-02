@@ -8,7 +8,9 @@ import gif1 from "../img/ellipse_ec0.5_gamma0.1_spin0.0_iter360000_half_3d.gif";
 import gif2 from "../img/ellipse_ec0.5_gamma0.707_spin0.0_iter360000_half_3d.gif";
 import gif3 from "../img/ellipse_ec0.5_gamma3_spin0.0_iter360000_half_3d.gif";
 
-const POL_API_KEY = process.env.REACT_APP_POL_API_KEY;
+const POL_API_KEY = (process.env.REACT_APP_POL_API_KEY || "").trim();
+const isApiKeyConfigured =
+  POL_API_KEY.length > 0 && POL_API_KEY.toLowerCase() !== "undefined";
 
 const BilliardsProj = () => {
   const [parameters, setParameters] = useState({
@@ -25,6 +27,7 @@ const BilliardsProj = () => {
   const [flag, setFlag] = useState([]);
   const [selectedOption, setSelectedOption] = useState("polygon");
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState("");
 
   const handleOptionChange = (event) => {
     if (event.target.value === "wedge") {
@@ -63,6 +66,7 @@ const BilliardsProj = () => {
     }
     setSelectedOption(event.target.value);
     setFlag([]);
+    setFetchError("");
   };
 
   const handleChange = (e) => {
@@ -125,19 +129,31 @@ const BilliardsProj = () => {
   };
 
   const handleFetch = async () => {
+    setFetchError("");
     if (flag.length > 0) {
+      return;
+    }
+    if (!isApiKeyConfigured) {
+      setLoading(false);
+      setImgSrc("");
+      setFetchError(
+        "API key is missing. Configure REACT_APP_POL_API_KEY in your deployment environment and rebuild."
+      );
       return;
     }
     setLoading(true);
     try {
-      const queryParams = new URLSearchParams(parameters);
+      const queryParams = new URLSearchParams({
+        ...parameters,
+        key: POL_API_KEY,
+      });
       const response = await fetch(
-        `https://billiards-d75d02uv.uc.gateway.dev/polygon?key=${POL_API_KEY}&${queryParams}`
+        `https://billiards-d75d02uv.uc.gateway.dev/polygon?${queryParams}`
       );
 
       console.log("Img fetched");
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error(`Request failed with status ${response.status}`);
       }
 
       // Assuming the response is a Blob (binary data), not JSON
@@ -147,6 +163,8 @@ const BilliardsProj = () => {
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setFetchError("Could not fetch plot data. Please verify API key and server CORS settings.");
+      setLoading(false);
     }
   };
   const tableData = [
@@ -549,7 +567,7 @@ const BilliardsProj = () => {
             <button
               className={flag.length > 0 ? "disabled-button" : "submit-button"}
               onClick={handleFetch}
-              disabled={flag.length > 0}
+              disabled={flag.length > 0 || !isApiKeyConfigured}
             >
               Run experiment
             </button>
@@ -562,6 +580,18 @@ const BilliardsProj = () => {
                   {flag.length === 1 ? "" : "s"}:
                 </b>{" "}
                 {flag.join(", ")}
+              </p>
+            </div>
+          )}
+          {fetchError && (
+            <div>
+              <p className="warning">
+                <b>Error:</b> {fetchError}
+              </p>
+              <p className="warning">
+                If this keeps happening, please email{" "}
+                <a href="mailto:jan.ahmed.prg@gmail.com">jan.ahmed.prg@gmail.com</a>{" "}
+                and include the shape and parameter values you used.
               </p>
             </div>
           )}

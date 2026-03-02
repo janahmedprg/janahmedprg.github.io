@@ -2,6 +2,32 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment Variables
+
+The billiards simulator requires a Google API gateway key at build time.
+
+- `REACT_APP_POL_API_KEY=<your_key>`
+
+For local development, place this in `.env.local`.
+
+For GitHub Actions deploys, add a repository secret:
+
+- GitHub -> `Settings` -> `Secrets and variables` -> `Actions` -> `New repository secret`
+- Name: `REACT_APP_POL_API_KEY`
+- Value: your API key
+
+The workflow at `.github/workflows/deploy.yml` injects this secret into the `npm run build` step.
+
+## GitHub Actions Deployment
+
+Deployment is handled by GitHub Actions and GitHub Pages.
+
+1. Go to GitHub -> `Settings` -> `Pages`
+2. Under `Build and deployment`, choose `Source: GitHub Actions`
+3. Push to `main` (or run the workflow manually from the `Actions` tab)
+
+The workflow builds the app and deploys the `build/` directory to GitHub Pages.
+
 ## Available Scripts
 
 In the project directory, you can run:
