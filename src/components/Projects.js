@@ -242,7 +242,13 @@ const Projects = () => {
 
             <section className="project-media">
               {selectedProject.media.type === "video" ? (
-                <video autoPlay loop muted playsInline>
+                <video
+                  key={selectedProject.id}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
                   <source src={selectedProject.media.src} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
