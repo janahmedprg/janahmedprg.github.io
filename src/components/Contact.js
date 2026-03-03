@@ -11,11 +11,10 @@ import "../css/Contact.css"; // Import the stylesheet
 const Contact = () => {
   return (
     <section className="contact" id="contact">
-      <div style={{ height: "52px" }}></div>
       <div className="contact-content">
         <h2>Contact Me</h2>
         <p className="cnt">
-          Feel free to reach out! You can contact me via email at{" "}
+          Feel free to reach out! You can send me an email at{" "}
           <a href="mailto:jan.ahmed.prg@gmail.com">
             <FaEnvelope /> jan.ahmed.prg@gmail.com
           </a>{" "}

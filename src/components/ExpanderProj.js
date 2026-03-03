@@ -1,11 +1,19 @@
 import "../css/Research.css";
 import { InlineMath } from "react-katex";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 import sync from "../docs/2023_Research.pdf";
 
-const ExpanderProj = () => {
+const ExpanderProj = ({ theme, onToggleTheme }) => {
+  const isDarkMode = theme === "dark";
+
   return (
     <section className="research">
       <div className="research-content">
+        <div className="research-page-topbar">
+          <div className="theme-toggle-control" aria-label="Toggle dark mode">
+            <DarkModeSwitch checked={isDarkMode} onChange={onToggleTheme} size={22} />
+          </div>
+        </div>
         <h2>Lubotzky-Phillips-Sarnak Graphs</h2>
         <p>
           Under the supervision of Professor Sebastian Cioaba and Ph.D. student

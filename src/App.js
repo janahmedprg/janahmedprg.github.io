@@ -24,7 +24,11 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (checked) => {
+    if (typeof checked === "boolean") {
+      setTheme(checked ? "dark" : "light");
+      return;
+    }
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
@@ -36,8 +40,14 @@ function App() {
           path="/"
           element={<Sections theme={theme} onToggleTheme={toggleTheme} />}
         />
-        <Route path="/research/billiards" element={<BilliardsProj />} />
-        <Route path="/research/expanders" element={<ExpanderProj />} />
+        <Route
+          path="/research/billiards"
+          element={<BilliardsProj theme={theme} onToggleTheme={toggleTheme} />}
+        />
+        <Route
+          path="/research/expanders"
+          element={<ExpanderProj theme={theme} onToggleTheme={toggleTheme} />}
+        />
       </Routes>
     </HashRouter>
   );

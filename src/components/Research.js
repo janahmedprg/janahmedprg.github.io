@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "../css/Projects.css";
 import "../css/Research.css";
 import { FaGithub } from "react-icons/fa";
@@ -13,368 +13,288 @@ import lis from "../img/lis.png";
 import lis2 from "../img/lis2.png";
 import lis3 from "../img/lis3.png";
 
+const researchProjects = [
+  {
+    id: "graph",
+    title: "Graph Theory",
+    summary:
+      "Improved lower bounds and spectral graph insights from independent research.",
+    about:
+      "Conducted research in graph theory focused on spectral characteristics and connectivity. Built algorithms that improved known lower bounds on independence numbers and established a validated lower bound for disconnecting vertex sets in Hamming graphs.",
+    literature: [
+      {
+        title: "Elementary Number Theory, Group Theory, and Ramanujan Graphs",
+        href: "https://math.bme.hu/~gabor/oktatas/SztoM/DavidoffSarnakValette.pdf",
+        authors: "G. Davidoff, P. Sarnak, A. Valette",
+      },
+      {
+        title: "Expander graphs are globally synchronizing",
+        href: "https://arxiv.org/abs/2210.12788",
+        authors: "S. H. Strogatz et al.",
+      },
+      {
+        title:
+          "On a conjecture of Brouwer involving the connectivity of strongly regular graphs",
+        href: "https://arxiv.org/abs/1105.0796",
+        authors: "S. M. Cioaba et al.",
+      },
+    ],
+    gallery: [
+      { src: lps, alt: "Graph computation output" },
+      { src: graph, alt: "Graph research visualization" },
+      { src: graph2, alt: "Graph research screenshot" },
+    ],
+    links: [
+      {
+        label: "Project write-up",
+        href: "#/research/expanders",
+        type: "website",
+      },
+      {
+        label: "GitHub repo",
+        href: "https://github.com/janahmedprg/RamanujanGraphs",
+        type: "github",
+        external: true,
+      },
+    ],
+  },
+  {
+    id: "billiards",
+    title: "No-slip Billiards",
+    summary:
+      "Dynamics research with simulation-based verification and co-authored papers.",
+    about:
+      "Conducted no-slip billiards research and co-authored two papers exploring billiard dynamics. Implemented Python simulations to test hypotheses, verify periodic behavior, and analyze stability across different geometries.",
+    literature: [
+      {
+        title: "No-slip Billiards",
+        href: "https://www.proquest.com/openview/900623543058120245987fcadbddec61/1?pq-origsite=gscholar&cbl=18750",
+        authors: "C. Cox",
+      },
+      {
+        title: "Stability of periodic orbits in no-slip billiards",
+        href: "https://iopscience.iop.org/article/10.1088/1361-6544/aacc43/meta",
+        authors: "C. Cox, R. Feres, H.-K. Zhang",
+      },
+      {
+        title: "The dynamics of billiards with no-slip collisions",
+        href: "https://www.sciencedirect.com/science/article/abs/pii/016727899390205F",
+        authors: "D. S. Broomhead, E. Gutkin",
+      },
+    ],
+    gallery: [
+      { src: billiards, alt: "No-slip billiards simulation image 1" },
+      { src: billiards1, alt: "No-slip billiards simulation image 2" },
+      { src: billiards2, alt: "No-slip billiards trajectory visualization" },
+    ],
+    links: [
+      {
+        label: "Project write-up",
+        href: "#/research/billiards",
+        type: "website",
+      },
+      {
+        label: "GitHub repo",
+        href: "https://github.com/janahmedprg/NoSlipBilliards",
+        type: "github",
+        external: true,
+      },
+    ],
+  },
+  {
+    id: "lis",
+    title: "Longest Increasing Subsequences",
+    summary:
+      "Random permutation analysis using tableaux and row bumping algorithms.",
+    about:
+      "Studied longest increasing subsequences in random permutations. Implemented row bumping to construct tableaux from sampled permutations and analyzed expected random shape behavior for random k-multiset permutations.",
+    literature: [
+      {
+        title: "The Surprising Mathematics of Longest Increasing Subsequences",
+        href: "https://www.math.ucdavis.edu/~romik/book/",
+        authors: "D. Romik",
+      },
+      {
+        title: "Young Tableaux",
+        href: "https://www.cambridge.org/core/books/young-tableaux/A7570B10D82AE7233E25E5D6F70A07B6",
+        authors: "W. Fulton",
+      },
+      {
+        title:
+          "Approximate Factorization and Concentration for Characters of Symmetric Groups",
+        href: "https://arxiv.org/abs/math/0006111",
+        authors: "P. Biane",
+      },
+    ],
+    gallery: [
+      { src: lis2, alt: "LIS experiment output 1" },
+      { src: lis, alt: "LIS experiment output 2" },
+      { src: lis3, alt: "LIS experiment output 3" },
+    ],
+    links: [
+      {
+        label: "Project write-up coming soon",
+        type: "website",
+        disabled: true,
+      },
+      {
+        label: "GitHub repo",
+        href: "https://github.com/janahmedprg/Longest-Increasing-Subsequences",
+        type: "github",
+        external: true,
+      },
+    ],
+  },
+];
+
+const ResearchLinkIcon = ({ type }) => {
+  if (type === "github") return <FaGithub aria-hidden="true" />;
+  if (type === "website")
+    return (
+      <img src={web} alt="" className="project-link-image" aria-hidden="true" />
+    );
+  return null;
+};
+
 const Research = () => {
-  const [selectedProj, setSelectedProj] = useState("graph");
-  const handleClick = (event) => {
-    const { id } = event.currentTarget; // Get the id of the clicked div
-    setSelectedProj(id); // Set the selectedProj state to the id
+  const [selectedProjectId, setSelectedProjectId] = useState("graph");
+  const selectedIndex = researchProjects.findIndex(
+    (project) => project.id === selectedProjectId,
+  );
+
+  const selectedProject = useMemo(
+    () =>
+      researchProjects.find((project) => project.id === selectedProjectId) ||
+      researchProjects[0],
+    [selectedProjectId],
+  );
+
+  const handleTabKeyDown = (event, index) => {
+    if (
+      event.key !== "ArrowDown" &&
+      event.key !== "ArrowUp" &&
+      event.key !== "Home" &&
+      event.key !== "End"
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    let nextIndex = index;
+
+    if (event.key === "ArrowDown") {
+      nextIndex = (index + 1) % researchProjects.length;
+    } else if (event.key === "ArrowUp") {
+      nextIndex =
+        (index - 1 + researchProjects.length) % researchProjects.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = researchProjects.length - 1;
+    }
+
+    setSelectedProjectId(researchProjects[nextIndex].id);
   };
 
   return (
-    <div className="projects-content">
+    <div className="projects-content research-section">
       <h2>Math Research</h2>
-      <div className="projects-container">
-        <div className="select-con">
-          <div className="selections">
-            <div
-              id="graph"
-              onClick={handleClick}
-              className={`project-item ${
-                selectedProj === "graph" ? "selected" : ""
-              }`}
-              style={{ marginTop: "0px" }}
+
+      <div className="projects-shell">
+        <div
+          className="projects-nav"
+          role="tablist"
+          aria-label="Research topic selector"
+          aria-orientation="vertical"
+        >
+          {researchProjects.map((project, index) => (
+            <button
+              key={project.id}
+              id={`research-tab-${project.id}`}
+              type="button"
+              role="tab"
+              aria-controls={`research-panel-${project.id}`}
+              aria-selected={selectedProject.id === project.id}
+              tabIndex={selectedIndex === index ? 0 : -1}
+              className={`project-item ${selectedProject.id === project.id ? "selected" : ""}`}
+              onClick={() => setSelectedProjectId(project.id)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
             >
-              Graph Theory
-            </div>
-            <div
-              className={`project-item ${
-                selectedProj === "billiards" ? "selected" : ""
-              }`}
-              id="billiards"
-              onClick={handleClick}
-            >
-              No-slip Billiards
-            </div>
-            <div
-              className={`project-item ${
-                selectedProj === "lis" ? "selected" : ""
-              }`}
-              id="lis"
-              onClick={handleClick}
-            >
-              Longest Increasing Subsequences
-            </div>
-          </div>
-          <div className="project-card-con">
-            {selectedProj === "graph" && (
-              <div className="project">
-                <h3>Graph Theory</h3>
-                <div className="research-info-con">
-                  <div className="about">
-                    <h4>About</h4>
-                    <p>
-                      Conducted research in graph theory, focusing on graph
-                      properties and their spectral characteristics. Developed
-                      algorithms to significantly improve the known lower bounds
-                      of the independence number of certain graphs. Established
-                      and validated a lower bound for disconnecting vertex sets
-                      in Hamming graphs
-                    </p>
-                    <h4 style={{ marginTop: "10px" }}>Literature read</h4>
-                    <ul
-                      style={{
-                        fontSize: "13pt",
-                        listStyle: "none",
-                        margin: "0px",
-                        color: "var(--text-primary)",
-                        padding: "0px",
-                      }}
-                    >
-                      <li style={{ marginTop: "5px" }}>
-                        <a
-                          href="https://math.bme.hu/~gabor/oktatas/SztoM/DavidoffSarnakValette.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          Elementary Number Theory, Group Theory, and Ramanujan
-                          Graphs
-                        </a>{" "}
-                        by G. Davidoff, P. Sarnak, Alain Valette
-                      </li>
-                      <li style={{ marginTop: "5px" }}>
-                        {" "}
-                        <a
-                          href="https://arxiv.org/abs/2210.12788"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          Expander graphs are globally synchronizing
-                        </a>{" "}
-                        by S. H. Strogatz, et al.
-                      </li>
-                      <li style={{ marginTop: "5px" }}>
-                        <a
-                          href="https://arxiv.org/abs/1105.0796"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          On a conjecture of Brouwer involving the connectivity
-                          of strongly regular graphs
-                        </a>{" "}
-                        by S. M. Cioaba, et al.
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="vid">
-                    <img style={{ height: "120px" }} src={lps} alt="graph" />
-                    <img style={{ height: "120px" }} src={graph} alt="graph" />
-                    <img style={{ height: "120px" }} src={graph2} alt="graph" />
-                  </div>
-                  <div className="git">
-                    <h4>Visit</h4>
-                    <p className="gitp">
-                      <a
-                        href="#/research/expanders"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={web} alt="Jan Ahmed" className="devpostpic" />{" "}
-                        Website
-                      </a>
-                    </p>
-                    <p className="gitp">
-                      <a
-                        href="https://github.com/janahmedprg/RamanujanGraphs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaGithub /> GitHub Repo
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-            {selectedProj === "billiards" && (
-              <div className="project">
-                <h3>No-slip Billiards</h3>
-                <div className="research-info-con">
-                  <div className="about">
-                    <h4>About</h4>
-                    <p>
-                      Conducted research in No-slip Billiards, co-authoring 2
-                      research papers that explore the dynamics of billiard
-                      systems. Developed and implemented algorithms in Python to
-                      verify hypotheses and analyze simulations of billiard
-                      systems.
-                    </p>
-                    <h4 style={{ marginTop: "10px" }}>Literature read</h4>
-                    <ul
-                      style={{
-                        fontSize: "13pt",
-                        listStyle: "none",
-                        margin: "0px",
-                        color: "var(--text-primary)",
-                        padding: "0px",
-                      }}
-                    >
-                      <li style={{ marginTop: "5px" }}>
-                        <a
-                          href="https://www.proquest.com/openview/900623543058120245987fcadbddec61/1?pq-origsite=gscholar&cbl=18750"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          No-slip Billiards
-                        </a>{" "}
-                        by C. Cox
-                      </li>
-                      <li style={{ marginTop: "5px" }}>
-                        {" "}
-                        <a
-                          href="https://iopscience.iop.org/article/10.1088/1361-6544/aacc43/meta"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          Stability of periodic orbits in no-slip billiards
-                        </a>{" "}
-                        by C Cox, R Feres and H-K Zhang
-                      </li>
-                      <li style={{ marginTop: "5px" }}>
-                        <a
-                          href="https://www.sciencedirect.com/science/article/abs/pii/016727899390205F"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          The dynamics of billiards with no-slip collisions
-                        </a>{" "}
-                        by D.S. Broomhead, Eugene Gutkin
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="vid">
-                    <img
-                      style={{ height: "120px" }}
-                      src={billiards}
-                      alt="graph"
-                    />
-                    <img
-                      style={{ height: "120px" }}
-                      src={billiards1}
-                      alt="graph"
-                    />
-                    <img
-                      style={{ height: "120px" }}
-                      src={billiards2}
-                      alt="graph"
-                    />
-                  </div>
-                  <div className="git">
-                    <h4>Visit</h4>
-                    <p className="gitp">
-                      <a
-                        href="#/research/billiards"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={web} alt="Jan Ahmed" className="devpostpic" />{" "}
-                        Website
-                      </a>
-                    </p>
-                    <p className="gitp">
-                      <a
-                        href="https://github.com/janahmedprg/NoSlipBilliards"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaGithub /> GitHub Repo
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-            {selectedProj === "lis" && (
-              <div className="project">
-                <h3>Longest Increasing Subsequences</h3>
-                <div className="research-info-con">
-                  <div className="about">
-                    <h4>About</h4>
-                    <p>
-                      Conducted research in longest increasing subsequences of
-                      random permutations. Implemented the row bumping algorithm
-                      to create tableaux from sampled random permutations.
-                      Analyzed the expected random shape for random k-multiset
-                      permutations.
-                    </p>
-                    <h4 style={{ marginTop: "10px" }}>Literature read</h4>
-                    <ul
-                      style={{
-                        fontSize: "13pt",
-                        listStyle: "none",
-                        margin: "0px",
-                        color: "var(--text-primary)",
-                        padding: "0px",
-                      }}
-                    >
-                      <li style={{ marginTop: "5px" }}>
-                        <a
-                          href="https://www.math.ucdavis.edu/~romik/book/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          The Surprising Mathematics of Longest Increasing
-                          Subsequences
-                        </a>{" "}
-                        by Dan Romik
-                      </li>
-                      <li style={{ marginTop: "5px" }}>
-                        {" "}
-                        <a
-                          href="https://www.cambridge.org/core/books/young-tableaux/A7570B10D82AE7233E25E5D6F70A07B6"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          Young Tableaux
-                        </a>{" "}
-                        by William Fulton
-                      </li>
-                      <li style={{ marginTop: "5px" }}>
-                        <a
-                          href="https://arxiv.org/abs/math/0006111"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontStyle: "italic",
-                            color: "var(--accent)",
-                            textDecoration: "none",
-                          }}
-                        >
-                          Approximate Factorization and Concentration for
-                          Characters of Symmetric Groups
-                        </a>{" "}
-                        by P. Biane
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="vid">
-                    <img style={{ height: "100px" }} src={lis2} alt="graph" />
-                    <img style={{ height: "100px" }} src={lis} alt="graph" />
-                    <img style={{ height: "100px" }} src={lis3} alt="graph" />
-                  </div>
-                  <div className="git">
-                    <h4>Visit</h4>
-                    <p className="gitp">
-                      <p>
-                        <img src={web} alt="Jan Ahmed" className="devpostpic" />{" "}
-                        Website coming soon
-                      </p>
-                    </p>
-                    <p className="gitp">
-                      <a
-                        href="https://github.com/janahmedprg/Longest-Increasing-Subsequences"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaGithub /> GitHub Repo
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+              <span className="project-item-title">{project.title}</span>
+              <span className="project-item-subtitle">{project.summary}</span>
+            </button>
+          ))}
         </div>
-        <div className="skills"></div>
+
+        <article
+          className="project-card research-card"
+          role="tabpanel"
+          id={`research-panel-${selectedProject.id}`}
+          aria-labelledby={`research-tab-${selectedProject.id}`}
+        >
+          <header className="project-header">
+            <h3>{selectedProject.title}</h3>
+          </header>
+
+          <div className="research-card-body">
+            <section className="research-about">
+              <h4>About</h4>
+              <p>{selectedProject.about}</p>
+            </section>
+
+            <section className="research-literature">
+              <h4>Literature</h4>
+              <ul>
+                {selectedProject.literature.map((paper) => (
+                  <li key={paper.href}>
+                    <a
+                      href={paper.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {paper.title}
+                    </a>
+                    <span>{paper.authors}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="research-gallery" aria-label="Research visuals">
+              {selectedProject.gallery.map((image) => (
+                <img key={image.src} src={image.src} alt={image.alt} />
+              ))}
+            </section>
+
+            <section className="research-links">
+              <h4>Visit</h4>
+              {selectedProject.links.map((link, index) =>
+                link.disabled ? (
+                  <div
+                    key={`${link.label}-${index}`}
+                    className="project-link-row disabled-link-row"
+                  >
+                    <span className="disabled-link-content">
+                      <ResearchLinkIcon type={link.type} />
+                      <span>{link.label}</span>
+                    </span>
+                  </div>
+                ) : (
+                  <div key={link.href} className="project-link-row">
+                    <a
+                      href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
+                    >
+                      <ResearchLinkIcon type={link.type} />
+                      <span>{link.label}</span>
+                    </a>
+                  </div>
+                ),
+              )}
+            </section>
+          </div>
+        </article>
       </div>
     </div>
   );

@@ -1,65 +1,113 @@
-.exp-con{
-    width: 100%;
-    max-width: 80%;
-}
-.experience {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  
-.exp-con>h2{
-    color: var(--text-primary);
-    text-align: center;
+.exp-con {
+  width: 100%;
+  max-width: min(1320px, 96%);
 }
 
-  .experience .timeline {
-    border-left: 2px solid var(--accent);
-    padding-left: 10px;
-    margin-bottom: 20px;
+.exp-con > h2 {
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.exp-intro {
+  margin: 0 auto 18px;
+  text-align: center;
+  max-width: 700px;
+  color: var(--text-primary);
+  opacity: 0.88;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.exp-card {
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 18px var(--shadow-color);
+  background: var(--bg-card);
+  padding: 16px;
+}
+
+.exp-card > h3 {
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.exp-timeline {
+  border-left: 2px solid var(--accent);
+  padding-left: 14px;
+}
+
+.exp-event {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.exp-event:last-child {
+  margin-bottom: 0;
+}
+
+.exp-event::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg-surface-muted);
+}
+
+.exp-event-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.exp-event h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.exp-period {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  background: var(--bg-surface-muted);
+  white-space: nowrap;
+}
+
+.exp-event p {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+  .experience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .experience .timeline .event {
-    margin-bottom: 20px;
-    position: relative;
-  }
-  
-  .experience .timeline .event::before {
-    content: '';
-    position: absolute;
-    left: -6px;
-    top: 9px;
-    width: 12px;
-    height: 12px;
-    background-color: var(--accent);
-    border-radius: 50%;
-  }
-  
-  .experience .container {
-    width: 370px;
-    border-style: solid;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    box-shadow: 0 0 10px var(--shadow-color);
-    padding: 10px 20px;
-    margin-bottom: 20px;
-  }
-  
-  .experience .container h2 {
-    color: var(--text-primary);
-    margin-top: 0px;
-    font-size: 24pt;
+}
+
+@media (max-width: 760px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
   }
 
-  .experience .container .timeline h4 {
-    color: var(--text-primary);
-    font-size: 16pt;
-    margin: 0px 20px;
+  .exp-card {
+    padding: 14px;
   }
-  .experience .container .timeline p {
-    color: var(--text-primary);
-    font-size: 13pt;
-    margin: 0px 20px;
-  } 
+}

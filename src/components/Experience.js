@@ -1,67 +1,85 @@
 import React from "react";
-import "react-vertical-timeline-component/style.min.css";
-// import SchoolIcon from "@mui/icons-material/School";
-// import WorkIcon from "@mui/icons-material/Work";
 import "../css/Experience.css";
 
 const Timeline = ({ title, events }) => (
-  <div className="container">
-    <h2>{title}</h2>
-    <div className="timeline">
-      {events.map((event, index) => (
-        <div className="event" key={index}>
-          <h4>{event.title}</h4>
-          <p>{event.description}</p>
+  <article className="exp-card">
+    <h3>{title}</h3>
+    <div className="exp-timeline">
+      {events.map((event) => (
+        <div
+          className="exp-event"
+          key={`${event.organization}-${event.role}-${event.period}`}
+        >
+          <div className="exp-event-head">
+            <h4>{event.organization}</h4>
+            <span className="exp-period">{event.period}</span>
+          </div>
+          <p>{event.role}</p>
         </div>
       ))}
     </div>
-  </div>
+  </article>
 );
 
 function Experience() {
   const educationEvents = [
     {
-      title: "University of Delaware",
-      description: "B.S. in Computer Science, 2020 - 2024",
+      organization: "University of Delaware",
+      role: "B.S. in Computer Science",
+      period: "2020 - 2024",
     },
     {
-      title: "University of Delaware",
-      description: "B.S. in Applied Mathematics, 2020 - 2024",
+      organization: "University of Delaware",
+      role: "B.S. in Applied Mathematics",
+      period: "2020 - 2024",
     },
   ];
 
   const experienceEvents = [
     {
-      title: "Amazon Web Services",
-      description: "SDE1, 2024 - Present",
+      organization: "Amazon Web Services",
+      role: "SDE",
+      period: "2024 - Present",
     },
-    { title: "University of Delaware", description: "Researcher 2022 - 2024" },
     {
-      title: "Amazon Web Services",
-      description: "Software Engineer Intern, Summer 2023",
+      organization: "University of Delaware",
+      role: "Researcher",
+      period: "2022 - 2024",
     },
-    { title: "University of Delaware", description: "Researcher 2021 - 2022" },
+    {
+      organization: "Amazon Web Services",
+      role: "Software Engineer Intern",
+      period: "Summer 2023",
+    },
+    {
+      organization: "University of Delaware",
+      role: "Researcher",
+      period: "2021 - 2022",
+    },
   ];
 
   const teachingEvents = [
     {
-      title: " University of Delaware",
-      description: "Classroom and Lab Assistant, 2022 - 2024",
+      organization: "University of Delaware",
+      role: "Classroom and Lab Assistant",
+      period: "2022 - 2024",
     },
     {
-      title: "University of Delaware",
-      description: "Homework and Exams Grader, 2022 - 2024",
+      organization: "University of Delaware",
+      role: "Homework and Exams Grader",
+      period: "2022 - 2024",
     },
     {
-      title: "University of Delaware",
-      description: "Mathematics tutor, 2021 - 2024",
+      organization: "University of Delaware",
+      role: "Mathematics Tutor",
+      period: "2021 - 2024",
     },
   ];
 
   return (
     <div className="exp-con">
       <h2 id="experience">Experience</h2>
-      <div className="experience">
+      <div className="experience-grid">
         <Timeline title="Education" events={educationEvents} />
         <Timeline title="Work Experience" events={experienceEvents} />
         <Timeline title="Teaching" events={teachingEvents} />

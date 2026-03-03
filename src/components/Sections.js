@@ -10,9 +10,8 @@ import Experience from "./Experience";
 
 const Sections = ({ theme, onToggleTheme }) => {
   return (
-    <div className="container">
+    <div className="page-container">
       <Header theme={theme} onToggleTheme={onToggleTheme}></Header>
-      <div style={{ height: "52px" }}></div>
       <section className="slides" id="about">
         <Home></Home>
       </section>

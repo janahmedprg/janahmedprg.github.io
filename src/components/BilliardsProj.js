@@ -4,6 +4,7 @@ import "../css/Research.css";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import QuestionMark from "../utils/QuestionMark";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 import gif1 from "../img/ellipse_ec0.5_gamma0.1_spin0.0_iter360000_half_3d.gif";
 import gif2 from "../img/ellipse_ec0.5_gamma0.707_spin0.0_iter360000_half_3d.gif";
 import gif3 from "../img/ellipse_ec0.5_gamma3_spin0.0_iter360000_half_3d.gif";
@@ -12,7 +13,7 @@ const POL_API_KEY = (process.env.REACT_APP_POL_API_KEY || "").trim();
 const isApiKeyConfigured =
   POL_API_KEY.length > 0 && POL_API_KEY.toLowerCase() !== "undefined";
 
-const BilliardsProj = () => {
+const BilliardsProj = ({ theme, onToggleTheme }) => {
   const [parameters, setParameters] = useState({
     n: 2,
     x: 0,
@@ -190,9 +191,16 @@ const BilliardsProj = () => {
     handleFetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
+  const isDarkMode = theme === "dark";
+
   return (
     <section className="research">
       <div className="research-content">
+        <div className="research-page-topbar">
+          <div className="theme-toggle-control" aria-label="Toggle dark mode">
+            <DarkModeSwitch checked={isDarkMode} onChange={onToggleTheme} size={22} />
+          </div>
+        </div>
         <h2>No-Slip Billiards</h2>
         <p>
           In our published paper{" "}

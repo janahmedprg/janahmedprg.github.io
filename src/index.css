@@ -20,6 +20,10 @@
   --button-disabled: #808080;
   --tooltip-bg: #ffffff;
   --tooltip-text: #000000;
+  --font-size-body: 1rem;
+  --font-size-h2: clamp(1.85rem, 3vw, 2.3rem);
+  --font-size-h3: clamp(1.2rem, 2.2vw, 1.6rem);
+  --font-size-h4: clamp(1.02rem, 1.5vw, 1.2rem);
 }
 
 :root[data-theme="dark"] {
@@ -56,6 +60,35 @@ body {
   background-color: var(--bg-page);
   color: var(--text-primary);
   transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+p,
+li {
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 a {

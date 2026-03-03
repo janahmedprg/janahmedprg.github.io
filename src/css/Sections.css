@@ -1,6 +1,7 @@
 html, body {
   height: fit-content;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 *{
@@ -8,10 +9,19 @@ html, body {
 }
 
 
-.container > .slides {
+.page-container > .slides {
   width: 100% !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  padding: 24px 0 16px;
+  scroll-margin-top: 78px;
+}
+
+.page-container {
+  padding-top: 56px;
+}
+
+.page-container > section {
+  scroll-margin-top: 78px;
 }

@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 // import { Link } from "react-router-dom";
 import "../css/Header.css";
 
 const Header = ({ theme, onToggleTheme }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const navScrollOffset = -72;
+  const scrollLinkProps = {
+    smooth: true,
+    duration: 500,
+    offset: navScrollOffset,
+  };
+  const isDarkMode = theme === "dark";
+  const handleThemeChange = (checked) => {
+    onToggleTheme(checked);
+  };
 
   // Function to toggle sidebar visibility
   const toggleSidebar = () => {
@@ -38,14 +49,9 @@ const Header = ({ theme, onToggleTheme }) => {
           <div className="navbar-left">
             <span className="navbar-brand">Jan Ahmed</span>
           </div>
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={onToggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-          >
-            {theme === "light" ? "Dark" : "Light"}
-          </button>
+          <div className="theme-toggle-control" aria-label="Toggle dark mode">
+            <DarkModeSwitch checked={isDarkMode} onChange={handleThemeChange} size={20} />
+          </div>
           <button
             type="button"
             className={`sidebar-toggle ${showSidebar ? "active" : ""}`}
@@ -62,8 +68,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="about"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   About
@@ -72,8 +77,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="projects"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Projects
@@ -82,8 +86,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="math"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Math Research
@@ -92,8 +95,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="experience"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Experience
@@ -102,8 +104,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="contact"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Contact
@@ -126,8 +127,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="about"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   About
@@ -136,8 +136,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="projects"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Projects
@@ -146,8 +145,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="math"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Math Research
@@ -156,8 +154,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="experience"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Experience
@@ -166,8 +163,7 @@ const Header = ({ theme, onToggleTheme }) => {
               <li className="nav-item">
                 <Link
                   to="contact"
-                  smooth={true}
-                  duration={500}
+                  {...scrollLinkProps}
                   className="nav-link"
                 >
                   Contact
@@ -175,14 +171,9 @@ const Header = ({ theme, onToggleTheme }) => {
               </li>
             </ul>
           </div>
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={onToggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-          >
-            {theme === "light" ? "Dark" : "Light"}
-          </button>
+          <div className="theme-toggle-control" aria-label="Toggle dark mode">
+            <DarkModeSwitch checked={isDarkMode} onChange={handleThemeChange} size={22} />
+          </div>
         </nav>
       </div>
     );
