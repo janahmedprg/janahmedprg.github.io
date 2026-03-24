@@ -16,6 +16,7 @@ import kapperai from "../img/kapperai.mp4";
 import adaai from "../img/adaai.mp4";
 import udalice from "../img/udalice.mp4";
 import sudokusolver from "../img/sudokusolver.png";
+import calibron12 from "../img/calibron12.png";
 import { FaGithub } from "react-icons/fa";
 
 const projects = [
@@ -147,6 +148,36 @@ const projects = [
     ],
   },
   {
+    id: "calibron12",
+    title: "Calibron12 Puzzle",
+    summary:
+      "Interactive Calibron 12 puzzle solver with animated DFS and backtracking playback.",
+    about:
+      "Built a visual Calibron 12 puzzle experience that lets users place pieces manually and watch the puzzle get solved step by step. The app animates a depth-first search with backtracking, includes playback controls, and makes the search trace easier to understand through a live event feed.",
+    skills: [
+      { label: "DFS" },
+      { label: "Backtracking" },
+      { label: "Vercel", Icon: Vercel },
+    ],
+    media: {
+      type: "image",
+      src: calibron12,
+      alt: "Calibron12 Puzzle screenshot",
+    },
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/janahmedprg/calibron12",
+        type: "github",
+      },
+      {
+        label: "Website",
+        href: "https://calibron12.vercel.app/",
+        type: "website",
+      },
+    ],
+  },
+  {
     id: "udalice",
     title: "UDAlice",
     summary:
@@ -242,13 +273,7 @@ const Projects = () => {
 
             <section className="project-media">
               {selectedProject.media.type === "video" ? (
-                <video
-                  key={selectedProject.id}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                >
+                <video key={selectedProject.id} autoPlay loop muted playsInline>
                   <source src={selectedProject.media.src} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
