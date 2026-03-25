@@ -15,6 +15,7 @@ import learner from "../img/learnerai.mp4";
 import kapperai from "../img/kapperai.mp4";
 import adaai from "../img/adaai.mp4";
 import udalice from "../img/udalice.mp4";
+import calibron12 from "../img/calibron12.png";
 import sudokusolver from "../img/sudokusolver.png";
 import calibron12 from "../img/calibron12.png";
 import { FaGithub } from "react-icons/fa";
@@ -119,6 +120,32 @@ const projects = [
         label: "Devpost",
         href: "https://devpost.com/software/ada-ai",
         type: "devpost",
+      },
+    ],
+  },
+  {
+    id: "calibron12",
+    title: "Calibron 12 Puzzle Solver",
+    summary:
+      "C++ backtracking solver with a browser visualization that replays a condensed DFS trace.",
+    about:
+      "Built a C++ depth-first search solver with backtracking for the 56 x 56 Calibron 12 packing puzzle, then paired it with a static web visualization that replays a condensed search trace. The project shows both the solved arrangement and how the solver explores placements.",
+    skills: [{ label: "C++" }, { label: "DFS" }, { label: "Backtracking" }],
+    media: {
+      type: "image",
+      src: calibron12,
+      alt: "Calibron 12 solver visualization",
+    },
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/janahmedprg/calibron12",
+        type: "github",
+      },
+      {
+        label: "Website",
+        href: "https://calibron12.vercel.app/",
+        type: "website",
       },
     ],
   },
