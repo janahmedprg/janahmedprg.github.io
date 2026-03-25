@@ -17,7 +17,6 @@ import adaai from "../img/adaai.mp4";
 import udalice from "../img/udalice.mp4";
 import calibron12 from "../img/calibron12.png";
 import sudokusolver from "../img/sudokusolver.png";
-import calibron12 from "../img/calibron12.png";
 import { FaGithub } from "react-icons/fa";
 
 const projects = [
