@@ -10,6 +10,7 @@ import { ReactComponent as Discord } from "../img/discord-icon.svg";
 import { ReactComponent as Vercel } from "../img/vercel-icon.svg";
 import devpost from "../img/devpost.png";
 import web from "../img/web.png";
+import openaiLogo from "../img/openai-icon.svg";
 import holoflash from "../img/holoflash.mp4";
 import learner from "../img/learnerai.mp4";
 import kapperai from "../img/kapperai.mp4";
@@ -20,6 +21,31 @@ import sudokusolver from "../img/sudokusolver.png";
 import { FaGithub } from "react-icons/fa";
 
 const projects = [
+  {
+    id: "llm-from-scratch",
+    title: "LLM from Scratch",
+    summary:
+      "Educational implementation of a large language model built from the ground up.",
+    about:
+      "Built a from-scratch large language model project to understand the core pieces behind modern generative AI systems, including tokenization, transformer architecture, model training, and text generation.",
+    skills: [
+      { label: "Python" },
+      { label: "PyTorch" },
+      { label: "Transformers", Icon: Openai },
+    ],
+    media: {
+      type: "image",
+      src: openaiLogo,
+      alt: "LLM from Scratch project logo",
+    },
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/janahmedprg/llm-from-scratch",
+        type: "github",
+      },
+    ],
+  },
   {
     id: "holoflash",
     title: "HoloFlash",
@@ -241,7 +267,7 @@ const LinkIcon = ({ type }) => {
 };
 
 const Projects = () => {
-  const [selectedProj, setSelectedProj] = useState("holoflash");
+  const [selectedProj, setSelectedProj] = useState("llm-from-scratch");
   const selectedProject = useMemo(
     () =>
       projects.find((project) => project.id === selectedProj) || projects[0],
