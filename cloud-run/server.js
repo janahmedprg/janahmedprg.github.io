@@ -1,13 +1,45 @@
 const http = require("http");
+const crypto = require("crypto");
+const { Firestore } = require("@google-cloud/firestore");
 
 const RUNPOD_ENDPOINT =
   process.env.RUNPOD_ENDPOINT || "https://api.runpod.ai/v2/jev8kihe4yxycu";
-const MAX_PROMPT_LENGTH = Number(process.env.MAX_PROMPT_LENGTH || 1200);
+const configuredPromptLength = Number(process.env.MAX_PROMPT_LENGTH || 100);
+const MAX_PROMPT_LENGTH =
+  Number.isFinite(configuredPromptLength) && configuredPromptLength > 0
+    ? configuredPromptLength
+    : 100;
+const configuredPromptLimitPerIp = Number(
+  process.env.MAX_PROMPTS_PER_IP || 5,
+);
+const MAX_PROMPTS_PER_IP =
+  Number.isFinite(configuredPromptLimitPerIp) && configuredPromptLimitPerIp > 0
+    ? configuredPromptLimitPerIp
+    : 5;
+const configuredPromptLimitWindowMs = Number(
+  process.env.PROMPT_LIMIT_WINDOW_MS || 7 * 24 * 60 * 60 * 1000,
+);
+const PROMPT_LIMIT_WINDOW_MS =
+  Number.isFinite(configuredPromptLimitWindowMs) &&
+  configuredPromptLimitWindowMs > 0
+    ? configuredPromptLimitWindowMs
+    : 7 * 24 * 60 * 60 * 1000;
 const PORT = Number(process.env.PORT || 8080);
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGIN || "*")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
+const FIRESTORE_COLLECTION =
+  process.env.FIRESTORE_COLLECTION || "runpodPromptLimits";
+const IP_HASH_SALT =
+  process.env.IP_HASH_SALT || "personal-web-runpod-proxy-default-salt";
+const firestoreOptions = {};
+
+if (process.env.FIRESTORE_DATABASE_ID) {
+  firestoreOptions.databaseId = process.env.FIRESTORE_DATABASE_ID;
+}
+
+const firestore = new Firestore(firestoreOptions);
 
 const getRunpodOutputText = (output) => {
   if (typeof output === "string") return output;
@@ -53,6 +85,65 @@ const readJsonBody = async (req) => {
   return JSON.parse(Buffer.concat(chunks).toString("utf8"));
 };
 
+const getClientIp = (req) => {
+  const forwardedFor = String(req.headers["x-forwarded-for"] || "")
+    .split(",")[0]
+    .trim();
+
+  return forwardedFor || req.socket.remoteAddress || "unknown";
+};
+
+const getIpHash = (ip) =>
+  crypto.createHash("sha256").update(`${IP_HASH_SALT}:${ip}`).digest("hex");
+
+const reservePromptSlot = async (ip) => {
+  const now = Date.now();
+  const docRef = firestore.collection(FIRESTORE_COLLECTION).doc(getIpHash(ip));
+
+  return firestore.runTransaction(async (transaction) => {
+    const snapshot = await transaction.get(docRef);
+    const data = snapshot.exists ? snapshot.data() : null;
+    const existingResetAt =
+      typeof data?.resetAtMs === "number" ? data.resetAtMs : 0;
+    const existingCount = typeof data?.count === "number" ? data.count : 0;
+
+    if (!snapshot.exists || now > existingResetAt) {
+      const resetAt = now + PROMPT_LIMIT_WINDOW_MS;
+
+      transaction.set(docRef, {
+        count: 1,
+        resetAtMs: resetAt,
+        updatedAtMs: now,
+      });
+
+      return {
+        allowed: true,
+        count: 1,
+        resetAt,
+      };
+    }
+
+    if (existingCount >= MAX_PROMPTS_PER_IP) {
+      return {
+        allowed: false,
+        count: existingCount,
+        resetAt: existingResetAt,
+      };
+    }
+
+    transaction.update(docRef, {
+      count: existingCount + 1,
+      updatedAtMs: now,
+    });
+
+    return {
+      allowed: true,
+      count: existingCount + 1,
+      resetAt: existingResetAt,
+    };
+  });
+};
+
 const handleRunpodChat = async (req, res, url) => {
   if (req.method === "OPTIONS") {
     setCorsHeaders(req, res);
@@ -80,6 +171,26 @@ const handleRunpodChat = async (req, res, url) => {
     if (prompt.length > MAX_PROMPT_LENGTH) {
       return sendJson(req, res, 400, {
         error: `Prompt must be ${MAX_PROMPT_LENGTH} characters or fewer.`,
+        maxPromptLength: MAX_PROMPT_LENGTH,
+      });
+    }
+
+    const clientIp = getClientIp(req);
+    const promptLimitStatus = await reservePromptSlot(clientIp);
+
+    if (!promptLimitStatus.allowed) {
+      const retryAfterSeconds = Math.max(
+        1,
+        Math.ceil((promptLimitStatus.resetAt - Date.now()) / 1000),
+      );
+
+      res.setHeader("Retry-After", String(retryAfterSeconds));
+      return sendJson(req, res, 429, {
+        error: `Prompt limit reached. Try again after ${new Date(
+          promptLimitStatus.resetAt,
+        ).toISOString()}.`,
+        maxPromptsPerIp: MAX_PROMPTS_PER_IP,
+        resetAt: new Date(promptLimitStatus.resetAt).toISOString(),
       });
     }
 
