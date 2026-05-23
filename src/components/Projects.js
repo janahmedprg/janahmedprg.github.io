@@ -10,7 +10,6 @@ import { ReactComponent as Discord } from "../img/discord-icon.svg";
 import { ReactComponent as Vercel } from "../img/vercel-icon.svg";
 import devpost from "../img/devpost.png";
 import web from "../img/web.png";
-import openaiLogo from "../img/openai-icon.svg";
 import holoflash from "../img/holoflash.mp4";
 import learner from "../img/learnerai.mp4";
 import kapperai from "../img/kapperai.mp4";
@@ -33,11 +32,7 @@ const projects = [
       { label: "PyTorch" },
       { label: "Transformers", Icon: Openai },
     ],
-    media: {
-      type: "image",
-      src: openaiLogo,
-      alt: "LLM from Scratch project logo",
-    },
+    media: { type: "chat" },
     links: [
       {
         label: "GitHub Repo",
@@ -248,6 +243,128 @@ const projects = [
   },
 ];
 
+const LLM_CHAT_ENDPOINT =
+  process.env.REACT_APP_LLM_CHAT_ENDPOINT || "/api/runpod-chat";
+
+const LLMChatbot = () => {
+  const [prompt, setPrompt] = useState("");
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      text: "Ask the from-scratch model a short prompt.",
+    },
+  ]);
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const pollJob = async (jobId) => {
+    for (let attempt = 0; attempt < 30; attempt += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      const response = await fetch(
+        `${LLM_CHAT_ENDPOINT}?jobId=${encodeURIComponent(jobId)}`,
+      );
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error || `Status request failed with ${response.status}`,
+        );
+      }
+
+      setStatus(data.status || "Checking status...");
+
+      if (data.text) return data.text;
+    }
+
+    throw new Error("The model is still running. Try again in a moment.");
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const trimmedPrompt = prompt.trim();
+
+    if (!trimmedPrompt || isSending) return;
+
+    setMessages((current) => [
+      ...current,
+      { role: "user", text: trimmedPrompt },
+    ]);
+    setPrompt("");
+    setIsSending(true);
+    setStatus("Submitting prompt...");
+
+    try {
+      const response = await fetch(LLM_CHAT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: trimmedPrompt }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(
+          errorData?.error || `Model request failed with ${response.status}`,
+        );
+      }
+
+      const data = await response.json();
+      const text =
+        data.text ||
+        (data.jobId
+          ? await pollJob(data.jobId)
+          : "The model finished, but did not return text.");
+      setMessages((current) => [...current, { role: "assistant", text }]);
+      setStatus("Ready");
+    } catch (error) {
+      setMessages((current) => [
+        ...current,
+        {
+          role: "assistant",
+          text: error.message || "Something went wrong calling the model.",
+        },
+      ]);
+      setStatus("Error");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  return (
+    <div className="llm-chatbot" aria-label="LLM from Scratch chatbot">
+      <div className="llm-chatbot-messages">
+        {messages.map((message, index) => (
+          <div
+            key={`${message.role}-${index}`}
+            className={`llm-chat-message ${message.role}`}
+          >
+            <span>{message.text}</span>
+          </div>
+        ))}
+        {isSending && (
+          <div className="llm-chat-message assistant">
+            <span>{status || "Thinking..."}</span>
+          </div>
+        )}
+      </div>
+
+      <form className="llm-chatbot-form" onSubmit={handleSubmit}>
+        <textarea
+          value={prompt}
+          onChange={(event) => setPrompt(event.target.value)}
+          placeholder="Type a prompt..."
+          aria-label="Prompt"
+          rows="3"
+          disabled={isSending}
+        />
+        <button type="submit" disabled={isSending || !prompt.trim()}>
+          {isSending ? "Sending..." : "Send"}
+        </button>
+      </form>
+    </div>
+  );
+};
+
 const LinkIcon = ({ type }) => {
   if (type === "github") return <FaGithub aria-hidden="true" />;
   if (type === "devpost")
@@ -324,7 +441,9 @@ const Projects = () => {
             </section>
 
             <section className="project-media">
-              {selectedProject.media.type === "video" ? (
+              {selectedProject.media.type === "chat" ? (
+                <LLMChatbot />
+              ) : selectedProject.media.type === "video" ? (
                 <video key={selectedProject.id} autoPlay loop muted playsInline>
                   <source src={selectedProject.media.src} type="video/mp4" />
                   Your browser does not support the video tag.
