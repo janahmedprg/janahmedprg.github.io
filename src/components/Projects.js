@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "../css/Projects.css";
 import { ReactComponent as Dart } from "../img/dart.svg";
 import { ReactComponent as Flutter } from "../img/flutter.svg";
@@ -245,6 +245,20 @@ const projects = [
 
 const LLM_CHAT_ENDPOINT =
   process.env.REACT_APP_LLM_CHAT_ENDPOINT || "/api/runpod-chat";
+const configuredPromptLimit = Number(
+  process.env.REACT_APP_LLM_PROMPT_LIMIT || 100,
+);
+const LLM_PROMPT_LIMIT =
+  Number.isFinite(configuredPromptLimit) && configuredPromptLimit > 0
+    ? configuredPromptLimit
+    : 100;
+
+const getFriendlyStatus = (status) => {
+  if (!status) return "Thinking...";
+  if (status === "IN_QUEUE") return "Waiting for the model...";
+  if (status === "IN_PROGRESS") return "Thinking...";
+  return "Checking the model...";
+};
 
 const LLMChatbot = () => {
   const [prompt, setPrompt] = useState("");
@@ -256,6 +270,26 @@ const LLMChatbot = () => {
   ]);
   const [status, setStatus] = useState("");
   const [isSending, setIsSending] = useState(false);
+  const messagesEndRef = useRef(null);
+  const charsRemaining = LLM_PROMPT_LIMIT - prompt.length;
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [messages, isSending, status]);
+
+  const handlePromptChange = (event) => {
+    setPrompt(event.target.value.slice(0, LLM_PROMPT_LIMIT));
+  };
+
+  const handlePromptKeyDown = (event) => {
+    if (event.key !== "Enter" || event.shiftKey) return;
+
+    event.preventDefault();
+    event.currentTarget.form?.requestSubmit();
+  };
 
   const pollJob = async (jobId) => {
     for (let attempt = 0; attempt < 30; attempt += 1) {
@@ -272,7 +306,7 @@ const LLMChatbot = () => {
         );
       }
 
-      setStatus(data.status || "Checking status...");
+      setStatus(getFriendlyStatus(data.status));
 
       if (data.text) return data.text;
     }
@@ -284,7 +318,9 @@ const LLMChatbot = () => {
     event.preventDefault();
     const trimmedPrompt = prompt.trim();
 
-    if (!trimmedPrompt || isSending) return;
+    if (!trimmedPrompt || isSending || trimmedPrompt.length > LLM_PROMPT_LIMIT) {
+      return;
+    }
 
     setMessages((current) => [
       ...current,
@@ -292,7 +328,7 @@ const LLMChatbot = () => {
     ]);
     setPrompt("");
     setIsSending(true);
-    setStatus("Submitting prompt...");
+    setStatus("Warming up the model...");
 
     try {
       const response = await fetch(LLM_CHAT_ENDPOINT, {
@@ -331,36 +367,59 @@ const LLMChatbot = () => {
   };
 
   return (
-    <div className="llm-chatbot" aria-label="LLM from Scratch chatbot">
-      <div className="llm-chatbot-messages">
-        {messages.map((message, index) => (
-          <div
-            key={`${message.role}-${index}`}
-            className={`llm-chat-message ${message.role}`}
-          >
-            <span>{message.text}</span>
-          </div>
-        ))}
-        {isSending && (
-          <div className="llm-chat-message assistant">
-            <span>{status || "Thinking..."}</span>
-          </div>
-        )}
+    <div className="llm-chatbot-shell">
+      <h4 className="llm-chatbot-title">Try my trained model</h4>
+      <div className="llm-chatbot-intro">
+        <p>
+          This runs on Runpod, which can get expensive, so each visitor is
+          limited to 5 prompts per week.
+        </p>
       </div>
 
-      <form className="llm-chatbot-form" onSubmit={handleSubmit}>
-        <textarea
-          value={prompt}
-          onChange={(event) => setPrompt(event.target.value)}
-          placeholder="Type a prompt..."
-          aria-label="Prompt"
-          rows="3"
-          disabled={isSending}
-        />
-        <button type="submit" disabled={isSending || !prompt.trim()}>
-          {isSending ? "Sending..." : "Send"}
-        </button>
-      </form>
+      <div className="llm-chatbot" aria-label="LLM from Scratch chatbot">
+        <div className="llm-chatbot-messages">
+          {messages.map((message, index) => (
+            <div
+              key={`${message.role}-${index}`}
+              className={`llm-chat-message ${message.role}`}
+            >
+              <span>{message.text}</span>
+            </div>
+          ))}
+          {isSending && (
+            <div className="llm-chat-status" role="status">
+              <span>{status || "Thinking..."}</span>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        <form className="llm-chatbot-form" onSubmit={handleSubmit}>
+          <textarea
+            value={prompt}
+            onChange={handlePromptChange}
+            onKeyDown={handlePromptKeyDown}
+            placeholder={`Type a prompt (${LLM_PROMPT_LIMIT} chars max)...`}
+            aria-label="Prompt"
+            rows="3"
+            maxLength={LLM_PROMPT_LIMIT}
+            disabled={isSending}
+          />
+          <span className="llm-chatbot-limit">
+            {charsRemaining} / {LLM_PROMPT_LIMIT} chars left
+          </span>
+          <button
+            type="submit"
+            disabled={
+              isSending ||
+              !prompt.trim() ||
+              prompt.trim().length > LLM_PROMPT_LIMIT
+            }
+          >
+            {isSending ? "Sending..." : "Send"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
