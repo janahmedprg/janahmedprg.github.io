@@ -377,7 +377,8 @@ const LLMChatbot = () => {
       <div className="llm-chatbot-intro">
         <p>
           This runs on Runpod, which can get expensive, so each visitor is
-          limited to 5 prompts per week.
+          limited to 5 prompts per week. To avoid extra cold starts, send
+          follow-up prompts within 2.5 minutes of each other.
         </p>
       </div>
 
