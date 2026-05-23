@@ -5,8 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Environment Variables
 
 The billiards simulator requires a Google API gateway key at build time.
+The LLM chatbot uses the Cloud Run proxy endpoint at build time.
 
 - `REACT_APP_POL_API_KEY=<your_key>`
+- `REACT_APP_LLM_CHAT_ENDPOINT=https://personal-web-runpod-proxy-1034295779191.us-east1.run.app/runpod-chat`
+- `REACT_APP_LLM_PROMPT_LIMIT=100`
 
 For local development, place this in `.env.local`.
 
@@ -15,8 +18,12 @@ For GitHub Actions deploys, add a repository secret:
 - GitHub -> `Settings` -> `Secrets and variables` -> `Actions` -> `New repository secret`
 - Name: `REACT_APP_POL_API_KEY`
 - Value: your API key
+- Name: `REACT_APP_LLM_CHAT_ENDPOINT`
+- Value: your Cloud Run `/runpod-chat` URL
+- Name: `REACT_APP_LLM_PROMPT_LIMIT`
+- Value: `100`
 
-The workflow at `.github/workflows/deploy.yml` injects this secret into the `npm run build` step.
+The workflow at `.github/workflows/deploy.yml` injects these values into the `npm run build` step.
 
 ## GitHub Actions Deployment
 

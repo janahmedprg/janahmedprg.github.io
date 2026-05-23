@@ -34,15 +34,27 @@ jobs:
       - name: Validate required secret
         env:
           REACT_APP_POL_API_KEY: ${{ secrets.REACT_APP_POL_API_KEY }}
+          REACT_APP_LLM_CHAT_ENDPOINT: ${{ secrets.REACT_APP_LLM_CHAT_ENDPOINT }}
+          REACT_APP_LLM_PROMPT_LIMIT: ${{ secrets.REACT_APP_LLM_PROMPT_LIMIT }}
         run: |
           if [ -z "$REACT_APP_POL_API_KEY" ]; then
             echo "REACT_APP_POL_API_KEY secret is missing."
+            exit 1
+          fi
+          if [ -z "$REACT_APP_LLM_CHAT_ENDPOINT" ]; then
+            echo "REACT_APP_LLM_CHAT_ENDPOINT secret is missing."
+            exit 1
+          fi
+          if [ -z "$REACT_APP_LLM_PROMPT_LIMIT" ]; then
+            echo "REACT_APP_LLM_PROMPT_LIMIT secret is missing."
             exit 1
           fi
 
       - name: Build
         env:
           REACT_APP_POL_API_KEY: ${{ secrets.REACT_APP_POL_API_KEY }}
+          REACT_APP_LLM_CHAT_ENDPOINT: ${{ secrets.REACT_APP_LLM_CHAT_ENDPOINT }}
+          REACT_APP_LLM_PROMPT_LIMIT: ${{ secrets.REACT_APP_LLM_PROMPT_LIMIT }}
         run: npm run build
 
       - name: Setup Pages

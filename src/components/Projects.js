@@ -244,7 +244,8 @@ const projects = [
 ];
 
 const LLM_CHAT_ENDPOINT =
-  process.env.REACT_APP_LLM_CHAT_ENDPOINT || "/api/runpod-chat";
+  process.env.REACT_APP_LLM_CHAT_ENDPOINT ||
+  "https://personal-web-runpod-proxy-1034295779191.us-east1.run.app/runpod-chat";
 const configuredPromptLimit = Number(
   process.env.REACT_APP_LLM_PROMPT_LIMIT || 100,
 );
