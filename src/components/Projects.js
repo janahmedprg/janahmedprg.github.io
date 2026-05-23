@@ -376,9 +376,9 @@ const LLMChatbot = () => {
       <h4 className="llm-chatbot-title">Try my trained model</h4>
       <div className="llm-chatbot-intro">
         <p>
-          This runs on Runpod, which can get expensive, so each visitor is
-          limited to 5 prompts per week. To avoid extra cold starts, send
-          follow-up prompts within 2.5 minutes of each other.
+          This runs on Runpod, which can get expensive, so visitors get 5
+          prompts per week. To avoid slow cold starts, send follow-ups within
+          2.5 minutes.
         </p>
       </div>
 
