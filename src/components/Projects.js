@@ -318,7 +318,11 @@ const LLMChatbot = () => {
     event.preventDefault();
     const trimmedPrompt = prompt.trim();
 
-    if (!trimmedPrompt || isSending || trimmedPrompt.length > LLM_PROMPT_LIMIT) {
+    if (
+      !trimmedPrompt ||
+      isSending ||
+      trimmedPrompt.length > LLM_PROMPT_LIMIT
+    ) {
       return;
     }
 
