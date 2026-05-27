@@ -58,6 +58,17 @@ const getRunpodOutputText = (output) => {
   return cleanModelText(JSON.stringify(output, null, 2));
 };
 
+const logRunpodEvent = (event, details) => {
+  console.log(
+    JSON.stringify({
+      event,
+      service: "runpod-proxy",
+      timestamp: new Date().toISOString(),
+      ...details,
+    }),
+  );
+};
+
 const setCorsHeaders = (req, res) => {
   const requestOrigin = req.headers.origin;
   const allowedOrigin =
@@ -101,7 +112,30 @@ const getClientIp = (req) => {
 const getIpHash = (ip) =>
   crypto.createHash("sha256").update(`${IP_HASH_SALT}:${ip}`).digest("hex");
 
-const reservePromptSlot = async (ip) => {
+const getPromptLimitStatus = async (ip) => {
+  const now = Date.now();
+  const docRef = firestore.collection(FIRESTORE_COLLECTION).doc(getIpHash(ip));
+  const snapshot = await docRef.get();
+  const data = snapshot.exists ? snapshot.data() : null;
+  const resetAt = typeof data?.resetAtMs === "number" ? data.resetAtMs : 0;
+  const count = typeof data?.count === "number" ? data.count : 0;
+
+  if (!snapshot.exists || now > resetAt) {
+    return {
+      allowed: true,
+      count: 0,
+      resetAt: now + PROMPT_LIMIT_WINDOW_MS,
+    };
+  }
+
+  return {
+    allowed: count < MAX_PROMPTS_PER_IP,
+    count,
+    resetAt,
+  };
+};
+
+const recordPromptUse = async (ip) => {
   const now = Date.now();
   const docRef = firestore.collection(FIRESTORE_COLLECTION).doc(getIpHash(ip));
 
@@ -181,7 +215,7 @@ const handleRunpodChat = async (req, res, url) => {
     }
 
     const clientIp = getClientIp(req);
-    const promptLimitStatus = await reservePromptSlot(clientIp);
+    const promptLimitStatus = await getPromptLimitStatus(clientIp);
 
     if (!promptLimitStatus.allowed) {
       const retryAfterSeconds = Math.max(
@@ -199,6 +233,12 @@ const handleRunpodChat = async (req, res, url) => {
       });
     }
 
+    logRunpodEvent("runpod_request", {
+      method: "POST",
+      path: "/run",
+      prompt,
+    });
+
     const response = await fetch(`${RUNPOD_ENDPOINT}/run`, {
       method: "POST",
       headers: {
@@ -208,6 +248,18 @@ const handleRunpodChat = async (req, res, url) => {
       body: JSON.stringify({ input: { prompt } }),
     });
     const data = await response.json();
+    const outputText = getRunpodOutputText(data.output);
+
+    logRunpodEvent("runpod_response", {
+      method: "POST",
+      path: "/run",
+      httpStatus: response.status,
+      runpodStatus: data.status,
+      jobId: data.id,
+      runpodOutput: data.output,
+      outputText,
+      error: data?.error,
+    });
 
     if (!response.ok) {
       return sendJson(req, res, response.status, {
@@ -216,9 +268,11 @@ const handleRunpodChat = async (req, res, url) => {
     }
 
     if (data.status === "COMPLETED") {
+      await recordPromptUse(clientIp);
+
       return sendJson(req, res, 200, {
         status: data.status,
-        text: getRunpodOutputText(data.output),
+        text: outputText,
       });
     }
 
@@ -227,6 +281,8 @@ const handleRunpodChat = async (req, res, url) => {
         error: "Runpod did not return a job id.",
       });
     }
+
+    await recordPromptUse(clientIp);
 
     return sendJson(req, res, 202, {
       jobId: data.id,
@@ -241,10 +297,28 @@ const handleRunpodChat = async (req, res, url) => {
       return sendJson(req, res, 400, { error: "jobId is required." });
     }
 
+    logRunpodEvent("runpod_request", {
+      method: "GET",
+      path: "/status",
+      jobId,
+    });
+
     const response = await fetch(`${RUNPOD_ENDPOINT}/status/${jobId}`, {
       headers: { Authorization: `Bearer ${apiKey}` },
     });
     const data = await response.json();
+    const outputText = getRunpodOutputText(data.output);
+
+    logRunpodEvent("runpod_response", {
+      method: "GET",
+      path: "/status",
+      httpStatus: response.status,
+      runpodStatus: data.status,
+      jobId,
+      runpodOutput: data.output,
+      outputText,
+      error: data?.error,
+    });
 
     if (!response.ok) {
       return sendJson(req, res, response.status, {
@@ -255,9 +329,7 @@ const handleRunpodChat = async (req, res, url) => {
     if (data.status === "COMPLETED") {
       return sendJson(req, res, 200, {
         status: data.status,
-        text:
-          getRunpodOutputText(data.output) ||
-          "The model finished, but did not return text.",
+        text: outputText || "The model finished, but did not return text.",
       });
     }
 
