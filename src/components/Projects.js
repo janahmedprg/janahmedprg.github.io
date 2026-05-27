@@ -195,36 +195,6 @@ const projects = [
     ],
   },
   {
-    id: "calibron12",
-    title: "Calibron12 Puzzle",
-    summary:
-      "Interactive Calibron 12 puzzle solver with animated DFS and backtracking playback.",
-    about:
-      "Built a visual Calibron 12 puzzle experience that lets users place pieces manually and watch the puzzle get solved step by step. The app animates a depth-first search with backtracking, includes playback controls, and makes the search trace easier to understand through a live event feed.",
-    skills: [
-      { label: "DFS" },
-      { label: "Backtracking" },
-      { label: "Vercel", Icon: Vercel },
-    ],
-    media: {
-      type: "image",
-      src: calibron12,
-      alt: "Calibron12 Puzzle screenshot",
-    },
-    links: [
-      {
-        label: "GitHub Repo",
-        href: "https://github.com/janahmedprg/calibron12",
-        type: "github",
-      },
-      {
-        label: "Website",
-        href: "https://calibron12.vercel.app/",
-        type: "website",
-      },
-    ],
-  },
-  {
     id: "udalice",
     title: "UDAlice",
     summary:
