@@ -353,6 +353,11 @@ const LLMChatbot = () => {
           2.5 minutes.
         </p>
         <p>
+          I do not keep an active worker running, so the serverless Runpod GPU
+          may not always be available. If it is unavailable, please try again
+          later.
+        </p>
+        <p>
           Expect weird replies: it is a small model trained for 90 minutes on
           one H100 with 10 GB of{" "}
           <a
