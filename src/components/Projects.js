@@ -382,6 +382,23 @@ const LLMChatbot = () => {
           prompts per week. To avoid slow cold starts, send follow-ups within
           2.5 minutes.
         </p>
+        <p>
+          Expect weird replies: it is a small model trained for 90 minutes on
+          one H100 with 10 GB of{" "}
+          <a
+            href="https://huggingface.co/datasets/stanford-cs336/owt-sample"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open Web Text
+          </a>
+          . Some example prompts:
+        </p>
+        <ul>
+          <li>The capital of Czech Republic is</li>
+          <li>If I have 3 apples and buy 2 more, then I have</li>
+          <li>Complete this sentence: The future of AI feels</li>
+        </ul>
       </div>
 
       <div className="llm-chatbot" aria-label="LLM from Scratch chatbot">

@@ -221,6 +221,20 @@
   color: var(--text-primary);
 }
 
+.llm-chatbot-intro > p + p,
+.llm-chatbot-intro > p + ul {
+  margin-top: 8px;
+}
+
+.llm-chatbot-intro > ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+
 .llm-chatbot-messages {
   min-height: 0;
   display: flex;
