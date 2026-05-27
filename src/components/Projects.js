@@ -254,6 +254,8 @@ const LLM_PROMPT_LIMIT =
     ? configuredPromptLimit
     : 100;
 
+const cleanModelText = (text) => text.replace(/<\|endoftext\|>/g, "").trim();
+
 const getFriendlyStatus = (status) => {
   if (!status) return "Thinking...";
   if (status === "IN_QUEUE") return "Waiting for the model...";
@@ -309,7 +311,7 @@ const LLMChatbot = () => {
 
       setStatus(getFriendlyStatus(data.status));
 
-      if (data.text) return data.text;
+      if (data.text) return cleanModelText(data.text);
     }
 
     throw new Error("The model is still running. Try again in a moment.");
@@ -351,7 +353,7 @@ const LLMChatbot = () => {
 
       const data = await response.json();
       const text =
-        data.text ||
+        (data.text && cleanModelText(data.text)) ||
         (data.jobId
           ? await pollJob(data.jobId)
           : "The model finished, but did not return text.");

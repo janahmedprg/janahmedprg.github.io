@@ -40,17 +40,22 @@ if (process.env.FIRESTORE_DATABASE_ID) {
 }
 
 const firestore = new Firestore(firestoreOptions);
+const END_OF_TEXT_TOKEN_PATTERN = /<\|endoftext\|>/g;
+
+const cleanModelText = (text) => text.replace(END_OF_TEXT_TOKEN_PATTERN, "").trim();
 
 const getRunpodOutputText = (output) => {
-  if (typeof output === "string") return output;
+  if (typeof output === "string") return cleanModelText(output);
   if (!output) return "";
-  if (typeof output.text === "string") return output.text;
-  if (typeof output.response === "string") return output.response;
-  if (typeof output.generated_text === "string") return output.generated_text;
-  if (Array.isArray(output)) {
-    return output.map(getRunpodOutputText).join("\n").trim();
+  if (typeof output.text === "string") return cleanModelText(output.text);
+  if (typeof output.response === "string") return cleanModelText(output.response);
+  if (typeof output.generated_text === "string") {
+    return cleanModelText(output.generated_text);
   }
-  return JSON.stringify(output, null, 2);
+  if (Array.isArray(output)) {
+    return cleanModelText(output.map(getRunpodOutputText).join("\n"));
+  }
+  return cleanModelText(JSON.stringify(output, null, 2));
 };
 
 const setCorsHeaders = (req, res) => {
