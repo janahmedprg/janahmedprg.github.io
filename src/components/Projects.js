@@ -8,6 +8,8 @@ import { ReactComponent as Openai } from "../img/openai-icon.svg";
 import { ReactComponent as ReactIco } from "../img/react.svg";
 import { ReactComponent as Discord } from "../img/discord-icon.svg";
 import { ReactComponent as Vercel } from "../img/vercel-icon.svg";
+import { ReactComponent as Docker } from "../img/docker-mark-ocean-blue.svg";
+import { ReactComponent as PyTorch } from "../img/PyTorch_logo_icon.svg";
 import devpost from "../img/devpost.png";
 import web from "../img/web.png";
 import holoflash from "../img/holoflash.mp4";
@@ -29,8 +31,9 @@ const projects = [
       "Built a from-scratch large language model project to understand the core pieces behind modern generative AI systems, including tokenization, transformer architecture, model training, and text generation.",
     skills: [
       { label: "Python" },
-      { label: "PyTorch" },
-      { label: "Transformers", Icon: Openai },
+      { label: "PyTorch", Icon: PyTorch },
+      { label: "Runpod" },
+      { label: "Docker", Icon: Docker },
     ],
     media: { type: "chat" },
     links: [
