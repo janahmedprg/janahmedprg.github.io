@@ -31,18 +31,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate required secret
+      - name: Validate required configuration
         env:
           REACT_APP_POL_API_KEY: ${{ secrets.REACT_APP_POL_API_KEY }}
-          REACT_APP_LLM_CHAT_ENDPOINT: ${{ secrets.REACT_APP_LLM_CHAT_ENDPOINT }}
           REACT_APP_LLM_PROMPT_LIMIT: ${{ secrets.REACT_APP_LLM_PROMPT_LIMIT }}
         run: |
           if [ -z "$REACT_APP_POL_API_KEY" ]; then
             echo "REACT_APP_POL_API_KEY secret is missing."
-            exit 1
-          fi
-          if [ -z "$REACT_APP_LLM_CHAT_ENDPOINT" ]; then
-            echo "REACT_APP_LLM_CHAT_ENDPOINT secret is missing."
             exit 1
           fi
           if [ -z "$REACT_APP_LLM_PROMPT_LIMIT" ]; then
@@ -53,7 +48,7 @@ jobs:
       - name: Build
         env:
           REACT_APP_POL_API_KEY: ${{ secrets.REACT_APP_POL_API_KEY }}
-          REACT_APP_LLM_CHAT_ENDPOINT: ${{ secrets.REACT_APP_LLM_CHAT_ENDPOINT }}
+          REACT_APP_LLM_CHAT_ENDPOINT: https://janahmedprg--llm-from-scratch-inference-inference-generate.modal.run
           REACT_APP_LLM_PROMPT_LIMIT: ${{ secrets.REACT_APP_LLM_PROMPT_LIMIT }}
         run: npm run build
 

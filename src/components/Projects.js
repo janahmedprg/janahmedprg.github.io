@@ -32,7 +32,7 @@ const projects = [
     skills: [
       { label: "Python" },
       { label: "PyTorch", Icon: PyTorch },
-      { label: "Runpod" },
+      { label: "Modal" },
       { label: "Docker", Icon: Docker },
     ],
     media: { type: "chat" },
@@ -218,7 +218,7 @@ const projects = [
 
 const LLM_CHAT_ENDPOINT =
   process.env.REACT_APP_LLM_CHAT_ENDPOINT ||
-  "https://personal-web-runpod-proxy-1034295779191.us-east1.run.app/runpod-chat";
+  "https://janahmedprg--llm-from-scratch-inference-inference-generate.modal.run";
 const configuredPromptLimit = Number(
   process.env.REACT_APP_LLM_PROMPT_LIMIT || 100,
 );
@@ -228,13 +228,6 @@ const LLM_PROMPT_LIMIT =
     : 100;
 
 const cleanModelText = (text) => text.replace(/<\|endoftext\|>/g, "").trim();
-
-const getFriendlyStatus = (status) => {
-  if (!status) return "Thinking...";
-  if (status === "IN_QUEUE") return "Waiting for the model...";
-  if (status === "IN_PROGRESS") return "Thinking...";
-  return "Checking the model...";
-};
 
 const LLMChatbot = () => {
   const [prompt, setPrompt] = useState("");
@@ -265,29 +258,6 @@ const LLMChatbot = () => {
 
     event.preventDefault();
     event.currentTarget.form?.requestSubmit();
-  };
-
-  const pollJob = async (jobId) => {
-    for (let attempt = 0; attempt < 30; attempt += 1) {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      const response = await fetch(
-        `${LLM_CHAT_ENDPOINT}?jobId=${encodeURIComponent(jobId)}`,
-      );
-      const data = await response.json().catch(() => null);
-
-      if (!response.ok) {
-        throw new Error(
-          data?.error || `Status request failed with ${response.status}`,
-        );
-      }
-
-      setStatus(getFriendlyStatus(data.status));
-
-      if (data.text) return cleanModelText(data.text);
-    }
-
-    throw new Error("The model is still running. Try again in a moment.");
   };
 
   const handleSubmit = async (event) => {
@@ -327,9 +297,7 @@ const LLMChatbot = () => {
       const data = await response.json();
       const text =
         (data.text && cleanModelText(data.text)) ||
-        (data.jobId
-          ? await pollJob(data.jobId)
-          : "The model finished, but did not return text.");
+        "The model finished, but did not return text.";
       setMessages((current) => [...current, { role: "assistant", text }]);
       setStatus("Ready");
     } catch (error) {
@@ -351,14 +319,12 @@ const LLMChatbot = () => {
       <h4 className="llm-chatbot-title">Try my trained model</h4>
       <div className="llm-chatbot-intro">
         <p>
-          This runs on Runpod, which can get expensive, so visitors get 5
-          prompts per week. To avoid slow cold starts, send follow-ups within
-          2.5 minutes.
+          This runs on Modal. The endpoint scales to zero when idle, so the
+          first request after a quiet period may take a little longer.
         </p>
         <p>
-          I do not keep an active worker running, so the serverless Runpod GPU
-          may not always be available. If it is unavailable, please try again
-          later.
+          The serverless GPU may occasionally be unavailable while it starts.
+          If that happens, please try again later.
         </p>
         <p>
           Expect weird replies: it is a small model trained for 90 minutes on
